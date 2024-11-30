@@ -49,7 +49,7 @@ const Blog = () => {
                 <img
                   src={data.image}
                   alt=""
-                  className="h-[230px] w-full rounded-2xl sm:h-[170px]"
+                  className="h-[230px] w-full rounded-2xl sm:h-[220px]"
                 />
                 <p className="text-sm text-gray-500 mt-2">{data.published}</p>
                 <p className="font-bold my-2 line-clamp-1">{data.title}</p>

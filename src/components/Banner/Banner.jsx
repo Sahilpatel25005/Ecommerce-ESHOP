@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Shered/Button";
+
 
 function Banner({ data }) {
   return (

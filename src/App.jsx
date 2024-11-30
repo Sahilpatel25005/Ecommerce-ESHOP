@@ -2,8 +2,8 @@ import Cetagory2 from "./components/Cetegory/Cetagory2";
 import Cetegory from "./components/Cetegory/Cetegory";
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
-import React, { useEffect, useState } from "react";
-import Services from "./components/Services/services";
+import React , { useEffect } from "react";
+import Services from "./components/Services/Services";
 import Banner from "./components/Banner/Banner";
 import headphone from "./assets/Hero/headphone.png";
 import smartwatch2 from "./assets/cetegory/smartwatch2.png";
@@ -24,7 +24,7 @@ function App() {
     title2: "Air Solo Bass",
     title3: "Winter Sale",
     title4:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque reiciendis",
+      "Headphones let a single user listen to an audio source privately, in contrast to a loudspeaker, which emits sound into the open air for anyone nearby to hear. ",
     bgColor: "#f42c37",
   };
 
@@ -36,7 +36,7 @@ function App() {
     title2: "Smart Solo",
     title3: "Winter Sale",
     title4:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque reiciendis",
+      "A smartwatch is a portable device worn on the wrist that supports apps and acts as an extension of your mobile phone in some cases.",
     bgColor: "#2dcc6f",
   };
 
