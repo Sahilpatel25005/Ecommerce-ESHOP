@@ -2,7 +2,7 @@ import Cetagory2 from "./components/Cetegory/Cetagory2";
 import Cetegory from "./components/Cetegory/Cetegory";
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
-import React , { useEffect } from "react";
+import React, { useEffect } from "react";
 import Services from "./components/Services/Services";
 import Banner from "./components/Banner/Banner";
 import headphone from "./assets/Hero/headphone.png";
