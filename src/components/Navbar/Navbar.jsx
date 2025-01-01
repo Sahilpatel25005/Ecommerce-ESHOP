@@ -3,27 +3,28 @@ import { FaSearch } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
+import { NavLink } from "react-router-dom";
 
 const MenuLinks = [
   {
     id: 1,
     name: "Home",
-    link: "/#",
+    link: "/",
   },
   {
     id: 2,
     name: "Shop",
-    link: "/#shop",
+    link: "/shop",
   },
   {
     id: 3,
     name: "About",
-    link: "/#about",
+    link: "/about",
   },
   {
     id: 4,
     name: "Blogs",
-    link: "/#blog",
+    link: "/blog",
   },
 ];
 
@@ -45,7 +46,7 @@ const DropDown = [
   },
 ];
 
-function Navbar({ handleOrderPopup }) {
+function Navbar({ handleCart }) {
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200  z-40">
       <div className="py-4">
@@ -61,18 +62,22 @@ function Navbar({ handleOrderPopup }) {
               <ul className="flex gap-4 items-center">
                 {MenuLinks.map((data, index) => (
                   <li key={index} className="">
-                    <a
-                      href={data.link}
-                      className="inline-block px-4 font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200 "
+                    <NavLink
+                      to={data.link}
+                      className={({ isActive }) =>
+                        `block py-2 pr-4 pl-3 duration-200 ${
+                          isActive ? "text-black" : "text-gray-500"
+                        }  lg:hover:bg-transparent lg:border-0 hover:text-black lg:p-0  font-semibold`
+                      }
                     >
                       {data.name}
-                    </a>
+                    </NavLink>
                   </li>
                 ))}
 
                 <li className="  group ">
                   <a
-                    href="#"
+                    href="Products"
                     className="flex font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200 "
                   >
                     Quick Links
@@ -113,7 +118,7 @@ function Navbar({ handleOrderPopup }) {
             <div className="flex relative">
               <FaShoppingCart
                 className="text-xl cursor-pointer"
-                onClick={handleOrderPopup}
+                onClick={handleCart}
               />
               <div
                 className="bg-primary rounded-lg w-4 h-4 absolute translate-x-3 -translate-y-2

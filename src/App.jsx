@@ -2,7 +2,7 @@ import Cetagory2 from "./components/Cetegory/Cetagory2";
 import Cetegory from "./components/Cetegory/Cetegory";
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Services from "./components/Services/Services";
 import Banner from "./components/Banner/Banner";
 import headphone from "./assets/Hero/headphone.png";
@@ -14,6 +14,7 @@ import Footer from "./components/Footer/Footer";
 import Popup from "./components/Popup/Popup";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const BannerData = {
@@ -56,9 +57,16 @@ function App() {
     AOS.refresh();
   }, []);
 
+  const [isCartOpen , setisCartOpen] = useState(false)
+  const handleCart = () => {
+    setisCartOpen(!isCartOpen)
+  }
+
   return (
+    
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
-      <Navbar handleOrderPopup={handleOrderPopup} />
+      <Cart handleCart={handleCart} isCartOpen={isCartOpen} />
+      <Navbar handleCart={handleCart} />
       <Hero handleOrderPopup={handleOrderPopup} />
       <Cetegory />
       <Cetagory2 />
