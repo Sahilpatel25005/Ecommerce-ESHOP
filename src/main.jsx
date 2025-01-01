@@ -13,9 +13,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Shop from './components/Shop/Shop.jsx';
 
-
-
-
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Outlet />} >
@@ -25,9 +22,6 @@ const routes = createBrowserRouter(
 
   ),
 )
-
-
-
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
