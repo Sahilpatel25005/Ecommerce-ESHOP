@@ -4,51 +4,20 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsopen } from "../Slice/HandleCart";
 
-const MenuLinks = [
-  {
-    id: 1,
-    name: "Home",
-    link: "/",
-  },
-  {
-    id: 2,
-    name: "Shop",
-    link: "/shop",
-  },
-  {
-    id: 3,
-    name: "About",
-    link: "/about",
-  },
-  {
-    id: 4,
-    name: "Blogs",
-    link: "/blog",
-  },
-];
+function Navbar() {
+  const DropDown = useSelector((state) => state.dropdown.DropdownData);
+  const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
 
-const DropDown = [
-  {
-    id: 1,
-    name: "Tranding Products",
-    link: "/#",
-  },
-  {
-    id: 2,
-    name: "Best Selling",
-    link: "/#",
-  },
-  {
-    id: 3,
-    name: "Top Rated",
-    link: "/#",
-  },
-];
+  const dispatch = useDispatch();
+  const handleCart = () => {
+    dispatch(setIsopen());
+  };
 
-function Navbar({ handleCart }) {
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200  z-40">
+    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-40 mb-7">
       <div className="py-4">
         <div className="container flex justify-between items-center">
           <div className="flex gap-4 items-center">

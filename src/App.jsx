@@ -57,16 +57,9 @@ function App() {
     AOS.refresh();
   }, []);
 
-  const [isCartOpen , setisCartOpen] = useState(false)
-  const handleCart = () => {
-    setisCartOpen(!isCartOpen)
-  }
-
   return (
-    
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
-      <Cart handleCart={handleCart} isCartOpen={isCartOpen} />
-      <Navbar handleCart={handleCart} />
+      <Cart />
       <Hero handleOrderPopup={handleOrderPopup} />
       <Cetegory />
       <Cetagory2 />
