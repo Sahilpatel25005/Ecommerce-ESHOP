@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "../Shered/Button";
+import { Toaster } from "react-hot-toast";
 
 const ShopCard = ({ data }) => {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="mb-10 ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
           {data.map((data) => (
@@ -24,6 +27,12 @@ const ShopCard = ({ data }) => {
                     text={"Add to Cart"}
                     bgColor={"bg-primary"}
                     textColor={"text-white"}
+                    productData={{
+                      id: data.id,
+                      title: data.title,
+                      price: data.price,
+                      img: data.img,
+                    }}
                   />
                 </div>
               </div>

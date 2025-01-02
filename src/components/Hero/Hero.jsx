@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import Slider from "react-slick";
 import Button from "../Shered/Button";
 import Image1 from "../../assets/Hero/headphone.png";

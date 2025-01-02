@@ -17,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-40 mb-7">
+    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-40 ">
       <div className="py-4">
         <div className="container flex justify-between items-center">
           <div className="flex gap-4 items-center">
@@ -35,8 +35,8 @@ function Navbar() {
                       to={data.link}
                       className={({ isActive }) =>
                         `block py-2 pr-4 pl-3 duration-200 ${
-                          isActive ? "text-black" : "text-gray-500"
-                        }  lg:hover:bg-transparent lg:border-0 hover:text-black lg:p-0  font-semibold`
+                          isActive ? "text-red-600" : "text-gray-500"
+                       }  lg:hover:bg-transparent lg:border-0 hover:text-black dark:hover:text-white lg:p-0  font-semibold`
                       }
                     >
                       {data.name}

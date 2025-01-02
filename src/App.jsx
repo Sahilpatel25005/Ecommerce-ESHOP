@@ -14,7 +14,6 @@ import Footer from "./components/Footer/Footer";
 import Popup from "./components/Popup/Popup";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Cart from "./components/Cart/Cart";
 
 function App() {
   const BannerData = {
@@ -58,8 +57,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden">
-      <Cart />
+    <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden pt-6">
       <Hero handleOrderPopup={handleOrderPopup} />
       <Cetegory />
       <Cetagory2 />

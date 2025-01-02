@@ -20,20 +20,22 @@ function Shop() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="mt-3">
-        <Heading
-          title="Our Products"
-          subtitle={"The best Products for you..."}
-        />
-        <ShopCard data={ProductsData} />
-        <ShopCard data={ProductsData2} />
-        <ShopCard data={ProductsData} />
-        <ShopCard data={ProductsData2} />
-        <ShopCard data={ProductsData} />
-        <ShopCard data={ProductsData2} />
+    <>
+      <div className="container dark:bg-gray-900 dark:text-white duration-200">
+        <div className="mt-3">
+          <Heading
+            title="Make Your Day Special"
+            subtitle={"The best Products for you..."}
+          />
+          <ShopCard data={ProductsData} />
+          <ShopCard data={ProductsData2} />
+          <ShopCard data={ProductsData} />
+          <ShopCard data={ProductsData2} />
+          <ShopCard data={ProductsData} />
+          <ShopCard data={ProductsData2} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

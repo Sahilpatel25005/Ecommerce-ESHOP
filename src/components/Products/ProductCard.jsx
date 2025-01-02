@@ -23,6 +23,12 @@ const ProductCard = ({ data }) => {
                   text={"Add to Cart"}
                   bgColor={"bg-primary"}
                   textColor={"text-white"}
+                  productData={{
+                    id: data.id,
+                    title: data.title,
+                    price: data.price,
+                    img: data.img,
+                  }}
                 />
               </div>
             </div>
