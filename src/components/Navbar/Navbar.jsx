@@ -10,6 +10,7 @@ import { setIsopen } from "../Slice/HandleCart";
 function Navbar() {
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
+  const cardItem = useSelector((state) => state.cartdata.cart);
 
   const dispatch = useDispatch();
   const handleCart = () => {
@@ -36,7 +37,7 @@ function Navbar() {
                       className={({ isActive }) =>
                         `block py-2 pr-4 pl-3 duration-200 ${
                           isActive ? "text-red-600" : "text-gray-500"
-                       }  lg:hover:bg-transparent lg:border-0 hover:text-black dark:hover:text-white lg:p-0  font-semibold`
+                        }  lg:hover:bg-transparent lg:border-0 hover:text-black dark:hover:text-white lg:p-0  font-semibold`
                       }
                     >
                       {data.name}
@@ -90,10 +91,12 @@ function Navbar() {
                 onClick={handleCart}
               />
               <div
-                className="bg-primary rounded-lg w-4 h-4 absolute translate-x-3 -translate-y-2
-                text-[11px] text-center  text-white  font-semibold  "
+                className={`bg-primary rounded-lg w-4 h-4 absolute translate-x-3 -translate-y-2
+                text-[11px] text-center  text-white  font-semibold ${
+                  cardItem.length >= 1 ? "block" : "hidden"
+                } `}
               >
-                5
+                {cardItem.length}
               </div>
             </div>
             <div>

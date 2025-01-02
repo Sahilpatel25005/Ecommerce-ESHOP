@@ -28,6 +28,7 @@ const ProductCard = ({ data }) => {
                     title: data.title,
                     price: data.price,
                     img: data.img,
+                    qty: 1,
                   }}
                 />
               </div>

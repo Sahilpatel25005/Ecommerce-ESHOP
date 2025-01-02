@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
+import { removeProduct, incereseQty, dicereseQty } from "../Slice/CartSlice";
+import { AiFillDelete } from "react-icons/ai";
+import { FaPlus } from "react-icons/fa";
+import { FaMinus } from "react-icons/fa";
 
 function Cart() {
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
   const item = useSelector((state) => state.cartdata.cart);
   console.log(item);
-  
-  
 
   return (
     <>
@@ -30,21 +32,51 @@ function Cart() {
           <hr className="mt-4" />
           <div className="mt-3    dark:bg-gray-900 dark:text-white p-4 rounded-md">
             {item.map((item) => (
-              <div className="flex justify-between items-center mt-4 bg-yellow-50 dark:bg-gray-800 shadow-md p-2 rounded-md">
+              <div
+                key={item.id}
+                className="flex justify-between items-center mt-4 bg-yellow-50 dark:bg-gray-800 shadow-md p-2 rounded-md"
+              >
                 <div className="flex items-center gap-4">
                   <img
                     src={item.img}
                     alt=""
                     className="w-[50px] h-[50px] object-cover"
                   />
+
                   <div>
                     <h1 className="text-lg font-medium">{item.title}</h1>
                     <p className="text-sm font-medium">Price : {item.price}</p>
                   </div>
                 </div>
-                <button className="bg-red-600 text-white px-2 py-1 rounded-md">
-                  Remove
-                </button>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <button
+                      className="bg-green-600 text-white px-1 py-1 rounded-md"
+                      onClick={() =>
+                        item.qty >= 1
+                          ? dispatch(incereseQty(item.id))
+                          : item.qty
+                      }
+                    >
+                      <FaPlus />
+                    </button>
+                    <span className="px-2 text-xl font-medium">{item.qty}</span>
+                    <button
+                      className="bg-red-600 text-white px-1 py-1 rounded-md"
+                      onClick={() =>
+                        item.qty > 1 ? dispatch(dicereseQty(item.id)) : item.qty
+                      }
+                    >
+                      <FaMinus />
+                    </button>
+                  </div>
+                  <button
+                    className="bg-red-600 text-white px-2 py-2 rounded-md"
+                    onClick={() => dispatch(removeProduct(item.id))}
+                  >
+                    <AiFillDelete className="text-xl" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
