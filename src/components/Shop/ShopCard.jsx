@@ -7,14 +7,14 @@ const ShopCard = ({ data }) => {
     <>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="mb-10 ">
+      <div className="pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
           {data.map((data) => (
             <div
               data-aos="fade-up"
               data-aos-delay={data.asoDelay}
               key={data.id}
-              className="group  w-full p-5 rounded-md shadow-lg duration-200"
+              className="group  w-full p-5 rounded-md shadow-lg duration-200 dark:shadow-gray-800"
             >
               <div className="relative mb-8 flex justify-center items-center">
                 <img
