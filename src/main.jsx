@@ -13,12 +13,15 @@ import Shop from "./components/Shop/Shop.jsx";
 import { Provider } from "react-redux";
 import { store } from "./Store/Store.jsx";
 import Layout from "./components/Layout/Layout.jsx";
+import About from "./components/About/About.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<App />} />
       <Route path="shop" element={<Shop />} />
+      <Route path="about" element={<About />} />
+
     </Route>
   )
 );

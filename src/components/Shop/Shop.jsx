@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ShopCard from "./ShopCard";
 import Heading from "../Shered/Heading";
+import { changeCetegory } from "../Slice/CategorySlice";
 
 function Shop() {
   const ProductsData = useSelector((state) => state.data.product);
-  const ProductsData2 = useSelector((state) => state.data.product2);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     AOS.init({
@@ -19,6 +20,13 @@ function Shop() {
     AOS.refresh();
   }, []);
 
+  const categoryArray = ["All", "Watch", "Headphone"];
+  const selectcategory = useSelector((state) => state.category.categorytype);
+
+  const handleCategory = (category) => {
+    dispatch(changeCetegory(category));
+  };
+
   return (
     <>
       <div className="container dark:bg-gray-900 dark:text-white duration-200">
@@ -27,12 +35,21 @@ function Shop() {
             title="Make Your Day Special"
             subtitle={"The best Products for you..."}
           />
+          <div className="mb-6 flex gap-5 justify-center sm:justify-start">
+            {categoryArray.map((category, index) => (
+              <button
+                key={index}
+                className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700  text-gray-900  rounded-md font-semibold duration-200 ${
+                  selectcategory === category &&
+                  "text-brandWhite bg-black dark:text-gray-900 dark:bg-slate-200"
+                }`}
+                onClick={() => handleCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
           <ShopCard data={ProductsData} />
-          <ShopCard data={ProductsData2} />
-          <ShopCard data={ProductsData} />
-          <ShopCard data={ProductsData2} />
-          <ShopCard data={ProductsData} />
-          <ShopCard data={ProductsData2} />
         </div>
       </div>
     </>

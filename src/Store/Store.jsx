@@ -4,6 +4,7 @@ import handleCartSlice from "../components/Slice/HandleCart";
 import dropDownSlice from "../components/Slice/DropDownSlice";
 import NavlinkSlice from "../components/Slice/NavlinkSlice";
 import CartData from "../components/Slice/CartSlice";
+import HandleCategory from "../components/Slice/CategorySlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     handlecart: handleCartSlice,
     dropdown: dropDownSlice,
     navlink: NavlinkSlice,
-    cartdata : CartData,
+    cartdata: CartData,
+    category: HandleCategory,
   },
 });
