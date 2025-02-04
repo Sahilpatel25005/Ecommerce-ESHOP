@@ -29,8 +29,8 @@ function Shop() {
 
   return (
     <>
-      <div className="container dark:bg-gray-900 dark:text-white duration-200">
-        <div className="mt-3">
+      <div className="container dark:bg-gray-900 dark:text-white duration-200 h-full">
+        <div className="mt-3 ">
           <Heading
             title="Make Your Day Special"
             subtitle={"The best Products for you..."}

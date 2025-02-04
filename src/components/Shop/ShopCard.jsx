@@ -5,19 +5,28 @@ import { useSelector } from "react-redux";
 
 const ShopCard = ({ data }) => {
   const selectcategory = useSelector((state) => state.category.categorytype);
+  const search = useSelector((state) => state.search.search);
 
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="pb-10">
+      <div className="pb-10 h-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
           {data
             .filter((item) => {
               if (selectcategory === "All") {
-                return item;
+                const searchitems = item.title
+                  .toLowerCase()
+                  .includes(search.toLowerCase());
+                if (searchitems) {
+                  return item;
+                }
               } else {
-                return selectcategory === item.category;
+                return (
+                  selectcategory === item.category &&
+                  item.title.toLowerCase().includes(search.toLowerCase())
+                );
               }
             })
             .map((data) => (

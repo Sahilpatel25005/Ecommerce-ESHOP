@@ -6,6 +6,7 @@ import DarkMode from "./DarkMode";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
+import { searchItem } from "../Slice/Search";
 
 function Navbar() {
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
@@ -78,10 +79,16 @@ function Navbar() {
           </div>
           <div className="flex justify-between items-center gap-4">
             {/* Searchbar section */}
-            <div className="relative  group hidden  sm:block ">
-              <input type="text" placeholder="Search" className="search-bar" />
+            <div className="relative  group hidden  sm:block">
+              <input
+              
+                type="text"
+                placeholder="Search"
+                className="search-bar "
+                onChange={(e) => dispatch(searchItem(e.target.value))}
+              />
               <FaSearch
-                className="text-xl text-gray-600 dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3
+                className="text-xl text-gray-600 bg-white dark:bg-gray-900 dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3
               group-hover:text-primary duration-200"
               />
             </div>

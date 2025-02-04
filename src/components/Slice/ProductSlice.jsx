@@ -6,6 +6,12 @@ import Img4 from "../../assets/products/p-4.jpg";
 import Img5 from "../../assets/products/p-5.jpg";
 import Img7 from "../../assets/products/p-7.jpg";
 import Img9 from "../../assets/products/p-9.jpg";
+import airbuds from "../../assets/products/airbuds.png";
+import airbuds2 from "../../assets/products/airbuds2.png";
+import airbuds3 from "../../assets/products/airbuds3.jpg";
+import Img10 from "../../assets/products/images10.jpg";
+import airb from "../../assets/products/airb.png";
+import watch from "../../assets/products/watch.png";
 
 const initialState = {
   product: [
@@ -27,7 +33,7 @@ const initialState = {
     },
     {
       id: 3,
-      img: Img3,
+      img: watch,
       title: "Goggles",
       price: "320",
       aosDelay: "400",
@@ -35,7 +41,7 @@ const initialState = {
     },
     {
       id: 4,
-      img: Img4,
+      img: airb,
       title: "Printed ",
       price: "220",
       aosDelay: "600",
@@ -43,7 +49,7 @@ const initialState = {
     },
     {
       id: 5,
-      img: Img9,
+      img: airbuds2,
       title: "Boat Headphone",
       price: "120",
       aosDelay: "0",
@@ -51,7 +57,7 @@ const initialState = {
     },
     {
       id: 6,
-      img: Img4,
+      img: airbuds,
       title: "Rocky Mountain",
       price: "420",
       aosDelay: "200",
@@ -59,7 +65,7 @@ const initialState = {
     },
     {
       id: 7,
-      img: Img7,
+      img: airbuds3,
       title: "Goggles",
       price: "320",
       aosDelay: "400",
@@ -67,7 +73,7 @@ const initialState = {
     },
     {
       id: 8,
-      img: Img5,
+      img: airbuds3,
       title: "Printed ",
       price: "220",
       aosDelay: "600",
@@ -75,7 +81,7 @@ const initialState = {
     },
     {
       id: 9,
-      img: Img1,
+      img: Img10,
       title: "Boat Headphone",
       price: "120",
       aosDelay: "0",
