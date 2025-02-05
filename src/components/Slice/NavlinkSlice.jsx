@@ -17,11 +17,7 @@ const initialState = {
       name: "About",
       link: "/about",
     },
-    {
-      id: 4,
-      name: "Blogs",
-      link: "/blog",
-    },
+    
   ],
 };
 
