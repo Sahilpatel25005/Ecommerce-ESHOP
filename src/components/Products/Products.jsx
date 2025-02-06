@@ -4,14 +4,30 @@ import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
 
 const Products = () => {
-  const ProductsData2 = useSelector((state) => state.data.product2);
+  const ProductsData2 = useSelector((state) => state.data.product_items);
+  const product = [];
+
+  for (let i = 0; i < ProductsData2.length; i++) {
+    if (
+      ProductsData2[i].productid == 1 ||
+      ProductsData2[i].productid == 2 ||
+      ProductsData2[i].productid == 3 ||
+      ProductsData2[i].productid == 4 ||
+      ProductsData2[i].productid == 8 ||
+      ProductsData2[i].productid == 9 ||
+      ProductsData2[i].productid == 10 ||
+      ProductsData2[i].productid == 11
+    ) {
+      product.push(ProductsData2[i]);
+    }
+  }
 
   return (
     <div>
       <div className="container">
         <Heading title="Our Products" subtitle={"Explore Our Products"} />
 
-        <ProductCard data={ProductsData2} />
+        <ProductCard data={product} />
       </div>
     </div>
   );

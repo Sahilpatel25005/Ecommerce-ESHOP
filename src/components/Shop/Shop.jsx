@@ -5,10 +5,15 @@ import "aos/dist/aos.css";
 import ShopCard from "./ShopCard";
 import Heading from "../Shered/Heading";
 import { changeCetegory } from "../Slice/CategorySlice";
+import { list_product } from "../Slice/ProductSlice";
 
 function Shop() {
-  const ProductsData = useSelector((state) => state.data.product);
+  const ProductsData = useSelector((state) => state.data.product_items);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(list_product()); // Dispatch API call on component mount
+  }, [dispatch]);
 
   useEffect(() => {
     AOS.init({
@@ -41,7 +46,7 @@ function Shop() {
                 key={index}
                 className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700  text-gray-900  rounded-md font-semibold duration-200 ${
                   selectcategory === category &&
-                  "text-brandWhite bg-black dark:text-gray-900 dark:bg-slate-200"
+                  "text-white !bg-gray-900 dark:text-gray-900  dark:bg-slate-200"
                 }`}
                 onClick={() => handleCategory(category)}
               >
