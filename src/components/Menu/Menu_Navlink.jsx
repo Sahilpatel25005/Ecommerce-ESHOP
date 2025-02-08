@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 
 function Menu_Navlink({ handleMenuOpen, Menuopen }) {
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
@@ -15,8 +16,8 @@ function Menu_Navlink({ handleMenuOpen, Menuopen }) {
         transform ${Menuopen ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-500 ease-in-out`}
       >
-        <button className="mt-8 w-full  flex justify-end px-12" onClick={handleMenuOpen}>
-              <p className="bg-gray-600 p-2 rounded-full px-4 text-2xl text-white">X</p>
+        <button className="pt-8 w-full  flex justify-end px-12" onClick={handleMenuOpen}>
+            <ImCross className="bg-gray-200 p-3 rounded-full  text-5xl text-black" />
             </button>
         <div className="h-full w-full flex justify-center items-center">
           <div>
