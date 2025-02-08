@@ -7,8 +7,10 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
 import { searchItem } from "../Slice/Search";
+import { TiThMenu } from "react-icons/ti";
 
-function Navbar() {
+
+function Navbar({handleMenuOpen}) {
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
   const cardItem = useSelector((state) => state.cartdata.cart);
@@ -25,11 +27,18 @@ function Navbar() {
           <div className="flex gap-4 items-center">
             <a
               href="#"
-              className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl"
+              className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl hidden sm:block  "
             >
               Eshop
             </a>
-            <div className="hidden lg:block ">
+            
+              
+              <button onClick={handleMenuOpen} className="lg:hidden">  
+              <TiThMenu className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl sm:hidden" />
+
+              </button>
+            
+            <div className="hidden lg:block  ">
               <ul className="flex gap-4 items-center">
                 {MenuLinks.map((data, index) => (
                   <li key={index} className="">

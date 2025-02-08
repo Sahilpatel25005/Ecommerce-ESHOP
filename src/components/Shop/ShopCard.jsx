@@ -79,10 +79,10 @@ const ShopCard = ({ data }) => {
                         return (
                           <FaStar
                             key={index}
-                            className={`cursor-pointer text-${  
+                            className={`cursor-pointer ${  
                               starValue <= rating[data.productid]
-                                ? "yellow-500"
-                                : "gray-300"
+                                ? "text-yellow-500 !"
+                                : "text-gray-300"
                             }`}
                             onClick={() =>
                               handleRating(data.productid, starValue)
