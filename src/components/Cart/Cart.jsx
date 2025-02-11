@@ -7,6 +7,13 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
 function Cart() {
+  const image_url = import.meta.env.VITE_IMAGE_URL;
+
+
+
+
+
+
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
   const item = useSelector((state) => state.cartdata.cart);
