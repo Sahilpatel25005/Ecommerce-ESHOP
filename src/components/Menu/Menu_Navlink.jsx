@@ -7,12 +7,13 @@ import { ImCross } from "react-icons/im";
 function Menu_Navlink({ handleMenuOpen, Menuopen }) {
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
-
+  console.log(Menuopen);
+  
   return (
     <>
       
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-50 shadow-lg 
+        className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-50 shadow-lg sm:hidden
         transform ${Menuopen ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-500 ease-in-out`}
       >
@@ -24,7 +25,7 @@ function Menu_Navlink({ handleMenuOpen, Menuopen }) {
             
             <ul className="flex gap-4 flex-col items-center">
               {MenuLinks.map((data, index) => (
-                <li key={index}>
+                <li key={index} onClick={handleMenuOpen}>
                   <NavLink
                     to={data.link}
                     className={({ isActive }) =>

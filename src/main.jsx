@@ -14,6 +14,8 @@ import { Provider } from "react-redux";
 import { store } from "./Store/Store.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import About from "./components/About/About.jsx";
+import ProtectedRout from "./components/Protected_route/Protected_route.jsx"
+import Order from "./components/Order_placed/Order.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +23,10 @@ const routes = createBrowserRouter(
       <Route path="" element={<App />} />
       <Route path="shop" element={<Shop />} />
       <Route path="about" element={<About />} />
-
+      <Route
+            path="/order"
+            element={<ProtectedRout element={<Order />} />}
+          />
     </Route>
   )
 );

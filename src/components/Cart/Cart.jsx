@@ -5,11 +5,16 @@ import { removeProduct, incereseQty, dicereseQty } from "../Slice/CartSlice";
 import { AiFillDelete } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { ImCross } from "react-icons/im";
+
 
 function Cart() {
+  const image_url = import.meta.env.VITE_IMAGE_URL;
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
   const item = useSelector((state) => state.cartdata.cart);
+  const navigate = useNavigate()
   const totalItems = useMemo(() => {
    return item.reduce(
     (totalItems, item) => totalItems + item.qty,
@@ -29,12 +34,10 @@ function Cart() {
           isCartOpen ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500 `}
       >
-        <button
-          className="dark:bg-gray-700 bg-gray-200 p-2 rounded-[50%] top-2 right-2 fixed text-center w-[44px] text-2xl font-bold"
-          onClick={() => dispatch(setIsopen())}
-        >
-          X
-        </button>
+        <button className=" w-full flex justify-end " onClick={() => dispatch(setIsopen())}>
+                    <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black" />
+                    </button>
+
         <div className="mt-8">
           <h1 className=" text-2xl font-medium text-center sm:text-3xl">
             Bring Your Item in Cart.
@@ -49,13 +52,13 @@ function Cart() {
                 >
                   <div className="flex items-center gap-4">
                     <img
-                      src={item.img}
+                      src={`${image_url}/src/assets/products/${item.image}`}
                       alt=""
                       className="w-[50px] h-[50px] object-cover"
                     />
 
                     <div>
-                      <h1 className="text-sm font-medium">{item.title}</h1>
+                      <h1 className="text-sm font-medium">{item.name}</h1>
                       <p className="text-sm font-medium">
                         Price : {item.price}
                       </p>
@@ -112,7 +115,11 @@ function Cart() {
             TOTAL AMOUNT :{" "}
             <span className="sm:text-xl text-sm font-bold ">{totalAmount}</span>
           </p>
-          <button className="sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl">
+          <button className="sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl"
+          onClick={() => {
+            navigate("/order")
+            dispatch(setIsopen())
+            }}>
             Cheak Out
           </button>
         </div>

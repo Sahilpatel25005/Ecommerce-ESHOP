@@ -9,6 +9,8 @@ import { list_product } from "../Slice/ProductSlice";
 
 function Shop() {
   const ProductsData = useSelector((state) => state.data.product_items);
+  console.log(ProductsData);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +48,7 @@ function Shop() {
                 key={index}
                 className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700  text-gray-900  rounded-md font-semibold duration-200 ${
                   selectcategory === category &&
-                  "text-white !bg-gray-900 dark:text-gray-900  dark:bg-slate-200"
+                  "text-white !bg-gray-900 dark:!text-gray-900  dark:!bg-slate-200"
                 }`}
                 onClick={() => handleCategory(category)}
               >
