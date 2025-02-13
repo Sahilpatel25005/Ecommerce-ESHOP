@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import apiCall from "../../APIcall/APIcall";
 
 const Registration = () => {
   const [userId, setUserId] = useState("");
@@ -45,14 +46,33 @@ const Registration = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      // Perform registration logic here
-      console.log(email);
-      console.log(password);
+      const registrationData = {
+        fname: firstName,
+        lname: lastName,
+        email: email,
+        monumber: phoneNumber,
+        password: password,
+        address: address,
+      };
 
+      try {
+        const response = await apiCall("/register", "POST", registrationData);
+        console.log();
+        if (!response.message) {
+          throw new Error("Registration failed");
+        }
+
+        console.log("Registration successful:");
       navigate("/login");
+      } catch (error) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          apiError: error.message,
+        }));
+      }
     }
   };
 
@@ -62,7 +82,7 @@ const Registration = () => {
 
       <div className="relative bg-white w-full max-w-md sm:max-w-lg md:max-w-xl p-6 sm:p-8 rounded-lg shadow-lg backdrop-blur-sm bg-opacity-70">
         <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
-          Register
+          Registration Form
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -230,37 +250,3 @@ const Registration = () => {
 };
 
 export default Registration;
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-//   if (validate()) {
-//     const registrationData = {
-//       userId,
-//       firstName,
-//       lastName,
-//       phoneNumber,
-//       email,
-//       password,
-//       address,
-//     };
-
-//     try {
-//       const response = await fetch("/login", "post", { body: registrationData });
-
-//       if (!response.ok) {
-//         throw new Error("Registration failed");
-//       }
-
-//       const data = await response.json();
-//       console.log("Registration successful:", data);
-
-//       navigate("/login");
-//     } catch (error) {
-//       console.error("Error:", error);
-//       setErrors((prevErrors) => ({
-//         ...prevErrors,
-//         apiError: error.message,
-//       }));
-//     }
-//   }
-// };

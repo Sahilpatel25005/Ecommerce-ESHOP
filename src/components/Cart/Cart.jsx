@@ -6,6 +6,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 
+
 function Cart() {
   const image_url = import.meta.env.VITE_IMAGE_URL;
 
@@ -56,7 +57,7 @@ function Cart() {
                 >
                   <div className="flex items-center gap-4">
                     <img
-                      src={item.img}
+                      src={`${image_url}/src/assets/products/${item.image}`}
                       alt=""
                       className="w-[50px] h-[50px] object-cover"
                     />

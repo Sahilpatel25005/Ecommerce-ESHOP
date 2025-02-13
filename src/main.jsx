@@ -18,18 +18,24 @@ import ProductDetails from "./components/Shop/ProductDetails.jsx";
 import MBlog from "./components/MainBlog/MBlog.jsx";
 import Login from "./components/Login/Login.jsx";
 import ForgotPassword from "./components/Login/Forgetpass.jsx";
+import Registration from "./components/Login/Registration.jsx";
+import PrivateRoute from "./components/Privateroute/Private.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+      <Route index element={<Login />} />
       <Route path="login" element={<Login />} />
-
-      <Route path="/" element={<App />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/register" element={<Registration />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/Home" element={<App />} />
       <Route path="shop" element={<Shop />} />
       <Route path="about" element={<About />} />
       <Route path="shop/product/:id" element={<ProductDetails />} />
       <Route path="MBlog" element={<MBlog />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+      </Route>
     </Route>
   )
 );

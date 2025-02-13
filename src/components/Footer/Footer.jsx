@@ -28,6 +28,7 @@ const FooterLinks = [
     title: "Blog",
     link: "/#blog",
   },
+ 
 ];
 
 const Footer = () => {
