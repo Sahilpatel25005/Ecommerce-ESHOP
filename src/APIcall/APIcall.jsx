@@ -4,6 +4,8 @@ const apiCall = async (endpoint, method = "GET", body = null) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
   try {
+    const token = localStorage.getItem("token");
+
     const options = {
       method,
       headers: {
@@ -15,10 +17,15 @@ const apiCall = async (endpoint, method = "GET", body = null) => {
       options.body = JSON.stringify(body);
     }
 
+    if (token) {
+      options.headers["Authorization"] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${baseUrl}${endpoint}`, options);
 
     if (!response.ok) {
-      throw new Error("API call failed");
+      const ne = await response.json(); // Return JSON data if any
+      throw new Error(ne.detail);
     }
 
     if (response.status !== 204) {

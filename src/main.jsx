@@ -14,24 +14,32 @@ import { Provider } from "react-redux";
 import { store } from "./Store/Store.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import About from "./components/About/About.jsx";
-import ProtectedRout from "./components/Protected_route/Protected_route.jsx"
+import ProtectedRout from "./components/Protected_route/Protected_route.jsx";
 import Order from "./components/Order_placed/Order.jsx";
 import Current_order from "./components/Order/Current_order.jsx";
 import Order_history from "./components/Order/Order_history.jsx";
+import Login from "./components/Login/Login.jsx";
+import ForgotPassword from "./components/Login/Forgetpass.jsx";
+import Registration from "./components/Login/Registration.jsx";
+import PrivateRoute from "./components/Privateroute/Private.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<App />} />
-      <Route path="shop" element={<Shop />} />
-      <Route path="about" element={<About />} />
-      <Route
-            path="/order"
-            element={<ProtectedRout element={<Order />} />}
-          />
-      <Route path="current_order" element={<Current_order />} />
-      <Route path="order_history" element={<Order_history />} />
-
+      <Route index element={<Login />} />
+      <Route path="login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/register" element={<Registration />} />
+      <Route element={<PrivateRoute />}>
+        <Route path="/Home" element={<App />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="about" element={<About />} />
+        <Route path="/order" element={<ProtectedRout element={<Order />} />} />
+        <Route path="current_order" element={<Current_order />} />
+        <Route path="order_history" element={<Order_history />} />
+        <Route path="shop/product/:id" element={<ProductDetails />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+      </Route>
     </Route>
   )
 );

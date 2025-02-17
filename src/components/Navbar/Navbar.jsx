@@ -1,9 +1,12 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaCaretDown } from "react-icons/fa";
+import {
+  FaSearch,
+  FaShoppingCart,
+  FaCaretDown,
+  FaSignOutAlt,
+} from "react-icons/fa";
 import DarkMode from "./DarkMode";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom"; // Import useNavigate here
 import { useDispatch, useSelector } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
 import { searchItem } from "../Slice/Search";
@@ -17,8 +20,16 @@ function Navbar({handleMenuOpen}) {
   const cardItem = useSelector((state) => state.cartdata.cart);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use the navigate hook here
+
   const handleCart = () => {
     dispatch(setIsopen());
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    navigate("/login");
   };
 
   return (
@@ -89,9 +100,8 @@ function Navbar({handleMenuOpen}) {
           </div>
           <div className="flex justify-between items-center gap-4">
             {/* Searchbar section */}
-            <div className="relative  group hidden  sm:block">
+            <div className="relative group hidden sm:block">
               <input
-              
                 type="text"
                 placeholder="Search"
                 className="search-bar "
@@ -118,6 +128,17 @@ function Navbar({handleMenuOpen}) {
             </div>
             <div>
               <DarkMode />
+            </div>
+
+            <div className="hidden lg:block">
+              <button
+                onClick={handleLogout}
+                // className="font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200"
+                className="text-xl text-gray-600 hover:text-black dark:hover:text-white absolute top-1/2 -translate-y-1/2 right-3
+              group-hover:text-primary duration-200"
+              >
+                <FaSignOutAlt className="text-xl" />
+              </button>
             </div>
           </div>
         </div>

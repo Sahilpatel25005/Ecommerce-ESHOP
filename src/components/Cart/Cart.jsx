@@ -13,19 +13,17 @@ function Cart() {
   const image_url = import.meta.env.VITE_IMAGE_URL;
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
-  const item = useSelector((state) => state.cartdata.cart);
-  const navigate = useNavigate()
+  const items = useSelector((state) => state.cartdata.cart);
   const totalItems = useMemo(() => {
-   return item.reduce(
-    (totalItems, item) => totalItems + item.qty,
-    0
-  )},[item])
+    return items.reduce((totalItems, item) => totalItems + item.qty, 0);
+  }, [items]);
 
-  const totalAmount =  useMemo(() => {
-  return item.reduce(
-    (totalItems, item) => totalItems + item.qty * item.price,
-    0
-  )},[item])
+  const totalAmount = useMemo(() => {
+    return items.reduce(
+      (totalItems, item) => totalItems + item.qty * item.price,
+      0
+    );
+  }, [items]);
 
   return (
     <>
@@ -44,13 +42,18 @@ function Cart() {
           </h1>
           <hr className="mt-4" />
           <div className="mt-3 dark:bg-gray-900 dark:text-white p-4 rounded-md ">
-            {item.length > 0 ? (
-              item.map((item) => (
+            {items.length > 0 ? (
+              items.map((item) => (
                 <div
-                  key={item.id}
+                  // key={item.id}
                   className="flex justify-between items-center mt-4 bg-yellow-50 dark:bg-gray-800 shadow-md p-2 rounded-md"
                 >
                   <div className="flex items-center gap-4">
+                    {/* <img
+                      src={${image_url}/src/assets/products/${item.image}}
+                      alt=""
+                      className="w-[50px] h-[50px] object-cover"
+                    /> */}
                     <img
                       src={`${image_url}/src/assets/products/${item.image}`}
                       alt=""
@@ -68,31 +71,31 @@ function Cart() {
                     <div className="flex items-center gap-1 sm:gap-0">
                       <button
                         className="bg-green-600 text-white px-1 py-1 rounded-md"
-                        onClick={() =>
-                          item.qty >= 1
-                            ? dispatch(incereseQty(item.id))
-                            : item.qty
-                        }
+                        onClick={() => dispatch(incereseQty(item.productid))}
                       >
                         <FaPlus />
                       </button>
+
                       <span className="px-2 text-xl  font-medium sm:text-[15px]">
-                       {item.qty}
+                        {item.qty}
                       </span>
+
                       <button
                         className="bg-red-600 text-white px-1 py-1 rounded-md"
                         onClick={() =>
-                          item.qty > 1
-                            ? dispatch(dicereseQty(item.id))
-                            : item.qty
+                          item.qty > 1 && dispatch(dicereseQty(item.productid))
                         }
                       >
                         <FaMinus />
                       </button>
                     </div>
+
                     <button
                       className="bg-red-600 text-white px-2 py-2 rounded-md"
-                      onClick={() => dispatch(removeProduct(item.id))}
+                      onClick={() => {
+                        console.log("Deleting product:", item.productid);
+                        dispatch(removeProduct(item.productid));
+                      }}
                     >
                       <AiFillDelete className="text-xl" />
                     </button>
