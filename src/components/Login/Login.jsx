@@ -28,14 +28,18 @@ const Login = () => {
       setEmailError("Please enter a valid email address.");
       return;
     }
-
+    const data = {
+      email: email,
+      password: password,
+    };
     try {
-      const res = await apiCall("/login", "post", { email, password });
+      const res = await apiCall("/login", "post", data);
 
       if (res.error) {
         setLoginError(res.error);
       } else {
-        localStorage.setItem("token", res.token_type);
+        localStorage.setItem("token", res.access_token);
+        console.log(res.access_token);
         navigate("/Home");
       }
     } catch (error) {
@@ -127,5 +131,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
