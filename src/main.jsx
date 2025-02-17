@@ -16,6 +16,8 @@ import Layout from "./components/Layout/Layout.jsx";
 import About from "./components/About/About.jsx";
 import ProtectedRout from "./components/Protected_route/Protected_route.jsx"
 import Order from "./components/Order_placed/Order.jsx";
+import Current_order from "./components/Order/Current_order.jsx";
+import Order_history from "./components/Order/Order_history.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,9 @@ const routes = createBrowserRouter(
             path="/order"
             element={<ProtectedRout element={<Order />} />}
           />
+      <Route path="current_order" element={<Current_order />} />
+      <Route path="order_history" element={<Order_history />} />
+
     </Route>
   )
 );

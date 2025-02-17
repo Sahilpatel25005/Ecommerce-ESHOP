@@ -4,18 +4,13 @@ const initialState = {
   DropdownData: [
     {
       id: 1,
-      name: "Tranding Products",
-      link: "/#",
+      name: "Order",
+      link: "/Current_order",
     },
     {
       id: 2,
-      name: "Best Selling",
-      link: "/#",
-    },
-    {
-      id: 3,
-      name: "Top Rated",
-      link: "/#",
+      name: "Order history",
+      link: "/Order_history",
     },
   ],
 };

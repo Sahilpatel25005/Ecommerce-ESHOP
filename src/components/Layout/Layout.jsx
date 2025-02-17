@@ -4,9 +4,6 @@ import Navbar from "../Navbar/Navbar";
 import Cart from "../Cart/Cart";
 import Menu_Navlink from "../Menu/Menu_Navlink";
 
-
-
-
 function Layout() {
 
     const [Menuopen, setMenuopen] = React.useState(false);

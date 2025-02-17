@@ -10,6 +10,7 @@ import { searchItem } from "../Slice/Search";
 import { TiThMenu } from "react-icons/ti";
 
 
+
 function Navbar({handleMenuOpen}) {
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
@@ -60,7 +61,7 @@ function Navbar({handleMenuOpen}) {
                     href="Products"
                     className="flex font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200 "
                   >
-                    Quick Links
+                    My Orders
                     <span>
                       <FaCaretDown className="mt-1 mx-1 text-gray-500 group-hover:rotate-180 duration-300 " />
                     </span>
