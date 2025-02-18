@@ -70,7 +70,7 @@ const CartData = createSlice({
       if (existItem) {
         existItem.qty += 1;
       } else {
-        state.cart.push({ ...action.payload, qty: 1 });
+        state.cart.push({ ...action.payload, qty: action.payload.qty });
       }
     },
   },
