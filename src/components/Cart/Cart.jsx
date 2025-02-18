@@ -1,7 +1,13 @@
 import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
-import { removeProduct, incereseQty, dicereseQty } from "../Slice/CartSlice";
+import { useEffect } from "react";
+import {
+  removeProduct,
+  incereseQty,
+  dicereseQty,
+  fetchCartItems,
+} from "../Slice/CartSlice";
 import { AiFillDelete } from "react-icons/ai";
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
@@ -14,6 +20,10 @@ function Cart() {
   const totalItems = useMemo(() => {
     return items.reduce((totalItems, item) => totalItems + item.qty, 0);
   }, [items]);
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
   const totalAmount = useMemo(() => {
     return items.reduce(
@@ -44,7 +54,7 @@ function Cart() {
             {items.length > 0 ? (
               items.map((item) => (
                 <div
-                  // key={item.id}
+                  key={item.id}
                   className="flex justify-between items-center mt-4 bg-yellow-50 dark:bg-gray-800 shadow-md p-2 rounded-md"
                 >
                   <div className="flex items-center gap-4">
