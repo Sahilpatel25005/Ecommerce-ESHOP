@@ -11,8 +11,8 @@ function Shop() {
   const ProductsData = useSelector((state) => state.data.product_items);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(list_product()); // Dispatch API call on component mount
+  useEffect( () => {
+    dispatch( list_product()); // Dispatch API call on component mount
   }, [dispatch]);
 
   useEffect(() => {
