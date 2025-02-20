@@ -66,7 +66,7 @@ function Cart() {
                         className="w-[50px] h-[50px] object-cover"
                       />
                       <div>
-                        <h1 className="text-sm font-medium">{item.title}</h1>
+                        <h1 className="text-sm font-medium">{item.name}</h1>
                         <p className="text-sm font-medium">
                           Price : {item.price}
                         </p>

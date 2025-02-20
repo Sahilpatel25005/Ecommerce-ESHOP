@@ -39,7 +39,6 @@ const ShopCard = ({ data }) => {
                 );
               }
             })
-
             .map((data) => (
               <div
                 data-aos="fade-up"
