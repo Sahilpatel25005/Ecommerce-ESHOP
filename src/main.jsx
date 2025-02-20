@@ -20,7 +20,7 @@ import Login from "./components/Login/Login.jsx";
 import ForgotPassword from "./components/Login/Forgetpass.jsx";
 import Registration from "./components/Login/Registration.jsx";
 import PrivateRoute from "./components/Privateroute/Private.jsx";
-
+// import Details from "./components/Shop/details.jsx";
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -30,10 +30,11 @@ const routes = createBrowserRouter(
       <Route path="/register" element={<Registration />} />
       <Route element={<PrivateRoute />}>
         <Route path="/Home" element={<App />} />
-      <Route path="shop" element={<Shop />} />
-      <Route path="about" element={<About />} />
-      <Route path="shop/product/:id" element={<ProductDetails />} />
-      <Route path="MBlog" element={<MBlog />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="about" element={<About />} />
+        <Route path="shop/product/:id" element={<ProductDetails />} />
+
+        <Route path="MBlog" element={<MBlog />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Route>
     </Route>

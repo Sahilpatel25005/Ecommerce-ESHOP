@@ -3,6 +3,7 @@ import Button from "../Shered/Button";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const ShopCard = ({ data }) => {
   const selectcategory = useSelector((state) => state.category.categorytype);
@@ -69,7 +70,18 @@ const ShopCard = ({ data }) => {
                   </div>
                 </div>
                 <div className="leading-7   ml-5">
-                  <h2 className="font-semibold text-xl">{data.name}</h2>
+                  <Link
+                    to={`/shop/product/${data.productid}`}
+                    className="font-semibold text-xl hover:underline hover:text-blue-500"
+                  >
+                    <h2>{data.name}</h2>
+                  </Link>
+                  {/* <Link
+                    to={`/shop/product/${data.productid}`} // Correct path to navigate to product details page
+                    className="font-semibold text-xl hover:underline"
+                  >
+                    <h2>{data.name}</h2>
+                  </Link> */}
 
                   <h2 className="font-bold text-2xl">${data.price}</h2>
                   <div className="flex items-center justify-between">

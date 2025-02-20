@@ -3,9 +3,9 @@ import Navbar from "../Navbar/Navbar";
 import Cart from "../Cart/Cart";
 
 const PrivateRoute = () => {
-  const isAuthenticated = !!localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 

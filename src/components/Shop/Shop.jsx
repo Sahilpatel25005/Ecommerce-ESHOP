@@ -8,11 +8,11 @@ import { changeCetegory } from "../Slice/CategorySlice";
 import { list_product } from "../Slice/ProductSlice";
 
 function Shop() {
-  const ProductsData = useSelector((state) => state.data.product_items);
+  const { product_items, loading, error } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
-  useEffect( () => {
-    dispatch( list_product()); // Dispatch API call on component mount
+  useEffect(() => {
+    dispatch(list_product()); // Dispatch API call on component mount
   }, [dispatch]);
 
   useEffect(() => {
@@ -38,15 +38,16 @@ function Shop() {
         <div className="mt-3 ">
           <Heading
             title="Make Your Day Special"
-            subtitle={"The best Products for you..."}
+            subtitle="The best Products for you..."
           />
+
           <div className="mb-6 flex gap-5 justify-center sm:justify-start">
             {categoryArray.map((category, index) => (
               <button
                 key={index}
-                className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700  text-gray-900  rounded-md font-semibold duration-200 ${
+                className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700 text-gray-900 rounded-md font-semibold duration-200 ${
                   selectcategory === category &&
-                  "text-white !bg-gray-900 dark:text-gray-900  dark:bg-slate-200"
+                  "text-white !bg-gray-900 dark:text-gray-900 dark:bg-slate-200"
                 }`}
                 onClick={() => handleCategory(category)}
               >
@@ -54,7 +55,19 @@ function Shop() {
               </button>
             ))}
           </div>
-          <ShopCard data={ProductsData} />
+
+          {error && (
+            <p className="text-center text-red-500">
+              {error.includes("expired")
+                ? "Session expired. Redirecting to login..."
+                : error}
+            </p>
+          )}
+
+          {error?.includes("expired") &&
+            setTimeout(() => (window.location.href = "/login"), 2000)}
+
+          {!loading && !error && <ShopCard data={product_items} />}
         </div>
       </div>
     </>
@@ -62,3 +75,68 @@ function Shop() {
 }
 
 export default Shop;
+
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import ShopCard from "./ShopCard";
+// import Heading from "../Shered/Heading";
+// import { changeCetegory } from "../Slice/CategorySlice";
+// import { list_product } from "../Slice/ProductSlice";
+
+// function Shop() {
+//   const ProductsData = useSelector((state) => state.data.product_items);
+//   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     dispatch(list_product()); // Dispatch API call on component mount
+//   }, [dispatch]);
+
+//   useEffect(() => {
+//     AOS.init({
+//       duration: 800,
+//       easing: "ease-in-sine",
+//       delay: 100,
+//       offset: 100,
+//     });
+//     AOS.refresh();
+//   }, []);
+
+//   const categoryArray = ["All", "Watch", "Headphone"];
+//   const selectcategory = useSelector((state) => state.category.categorytype);
+
+//   const handleCategory = (category) => {
+//     dispatch(changeCetegory(category));
+//   };
+
+//   return (
+//     <>
+//       <div className="container dark:bg-gray-900 dark:text-white duration-200 h-full">
+//         <div className="mt-3 ">
+//           <Heading
+//             title="Make Your Day Special"
+//             subtitle={"The best Products for you..."}
+//           />
+//           <div className="mb-6 flex gap-5 justify-center sm:justify-start">
+//             {categoryArray.map((category, index) => (
+//               <button
+//                 key={index}
+//                 className={`px-2 py-1 shadow-lg bg-slate-50 dark:text-white dark:bg-gray-700  text-gray-900  rounded-md font-semibold duration-200 ${
+//                   selectcategory === category &&
+//                   "text-white !bg-gray-900 dark:text-gray-900  dark:bg-slate-200"
+//                 }`}
+//                 onClick={() => handleCategory(category)}
+//               >
+//                 {category}
+//               </button>
+//             ))}
+//           </div>
+//           <ShopCard data={ProductsData} />
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Shop;
