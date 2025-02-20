@@ -12,9 +12,7 @@ import { setIsopen } from "../Slice/HandleCart";
 import { searchItem } from "../Slice/Search";
 import { TiThMenu } from "react-icons/ti";
 
-
-
-function Navbar({handleMenuOpen}) {
+function Navbar({ handleMenuOpen }) {
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
   const cardItem = useSelector((state) => state.cartdata.cart);
@@ -33,7 +31,7 @@ function Navbar({handleMenuOpen}) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-40 ">
+    <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-30 ">
       <div className="py-4">
         <div className="container flex justify-between items-center">
           <div className="flex gap-4 items-center">
@@ -43,13 +41,11 @@ function Navbar({handleMenuOpen}) {
             >
               Eshop
             </a>
-            
-              
-              <button onClick={handleMenuOpen} className="lg:hidden">  
-              <TiThMenu className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl sm:hidden" />
 
-              </button>
-            
+            <button onClick={handleMenuOpen} className="lg:hidden">
+              <TiThMenu className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl sm:hidden" />
+            </button>
+
             <div className="hidden lg:block  ">
               <ul className="flex gap-4 items-center">
                 {MenuLinks.map((data, index) => (
@@ -68,10 +64,7 @@ function Navbar({handleMenuOpen}) {
                 ))}
 
                 <li className="  group ">
-                  <a
-                    href="Products"
-                    className="flex font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200 "
-                  >
+                  <a className="flex font-semibold text-gray-500 hover:text-black dark:hover:text-white duration-200 ">
                     My Orders
                     <span>
                       <FaCaretDown className="mt-1 mx-1 text-gray-500 group-hover:rotate-180 duration-300 " />
@@ -84,12 +77,12 @@ function Navbar({handleMenuOpen}) {
                           key={index}
                           className="hover:bg-primary/20 px-1 rounded-md"
                         >
-                          <a
-                            href={data.link}
+                          <NavLink
+                            to={data.link}
                             className="text-gray-500 hover:text-black dark:hover:text-white duration-200 inline-block p-2 font-semibold"
                           >
                             {data.name}
-                          </a>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>

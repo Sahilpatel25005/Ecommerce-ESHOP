@@ -13,7 +13,7 @@ function Menu_Navlink({ handleMenuOpen, Menuopen }) {
     <>
       
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-50 shadow-lg sm:hidden
+        className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-40 shadow-lg sm:hidden
         transform ${Menuopen ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-500 ease-in-out`}
       >

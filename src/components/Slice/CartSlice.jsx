@@ -5,7 +5,7 @@ export const incereseQty = createAsyncThunk(
   "cart/incereseQty",
 
   async (productId, { rejectWithValue }) => {
-    console.log("Received productId:", productId);
+    // console.log("Received productId:", productId);
     if (!productId) {
       return rejectWithValue("Product ID is undefined!");
     }
@@ -14,7 +14,7 @@ export const incereseQty = createAsyncThunk(
         productid: productId,
       });
 
-      console.log("API Response:", response);
+      // console.log("API Response:", response);
       return response.cart_item;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -43,8 +43,6 @@ export const removeProduct = createAsyncThunk(
       const response = await apiCall(`/cart/delete`, "DELETE", {
         productid: productId,
       });
-
-      console.log("API Delete Response:", response);
 
       if (!response.delete_item) {
         return rejectWithValue("Invalid response format");
@@ -77,7 +75,7 @@ const CartData = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(incereseQty.fulfilled, (state, action) => {
-        console.log(state.cart);
+        // console.log(state.cart);
 
         state.cart = state.cart.map((item) =>
           item.productid === action.payload.productid
@@ -87,8 +85,6 @@ const CartData = createSlice({
       })
 
       .addCase(dicereseQty.fulfilled, (state, action) => {
-        console.log(action.payload);
-
         state.cart = state.cart.map((item) =>
           item.productid === action.payload.productid
             ? { ...item, qty: action.payload.qty }
@@ -97,8 +93,6 @@ const CartData = createSlice({
       })
 
       .addCase(removeProduct.fulfilled, (state, action) => {
-        console.log("Deleted item:", action.payload);
-
         if (!action.payload || !action.payload.productid) {
           console.error("Invalid payload:", action.payload);
           return;

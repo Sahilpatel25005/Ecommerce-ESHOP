@@ -1,9 +1,14 @@
 // ****************************** reusable function for api call ************************************
 
-const apiCall = async (endpoint, method = "GET", body = null) => {
+// import { setLoading } from "../components/Slice/LoadingSlice";
+// import store from "../Store/Store";
+ const apiCall = async (endpoint, method = "GET", body = null) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
   try {
+    
+
+    // dispatch(setLoading(true));
     const token = localStorage.getItem("token");
 
     const options = {
@@ -36,6 +41,10 @@ const apiCall = async (endpoint, method = "GET", body = null) => {
   } catch (error) {
     console.error("Error in API call:", error);
     throw error; // Rethrow the error for further handling
+  }
+  finally{
+    // store.dispatch(setLoading(false))
+
   }
 };
 

@@ -5,11 +5,13 @@ import dropDownSlice from "../components/Slice/DropDownSlice";
 import NavlinkSlice from "../components/Slice/NavlinkSlice";
 import CartData from "../components/Slice/CartSlice";
 import HandleCategory from "../components/Slice/CategorySlice";
-import Searchslice from "../components/Slice/Search"
+import Searchslice from "../components/Slice/Search";
+import loadingSlice from "../components/Slice/LoadingSlice";
+import cheakoutSlice from "../components/Slice/CheakoutSlice";
+import itemSlice from "../components/Slice/OrderHistorySlice";
+import PendingitemSlice  from "../components/Slice/PendingOrderSlice";
 
-
-
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     data: dataSlice,
     handlecart: handleCartSlice,
@@ -17,6 +19,12 @@ export const store = configureStore({
     navlink: NavlinkSlice,
     cartdata: CartData,
     category: HandleCategory,
-    search : Searchslice,
+    search: Searchslice,
+    loading: loadingSlice,
+    cheakout: cheakoutSlice,
+    item: itemSlice,
+    pendingItem : PendingitemSlice
   },
 });
+
+export default store;

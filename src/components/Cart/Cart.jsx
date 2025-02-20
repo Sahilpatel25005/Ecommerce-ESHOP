@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
 import { removeProduct, incereseQty, dicereseQty } from "../Slice/CartSlice";
@@ -7,13 +7,17 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
-
+import useApiCall from "../../APIcall/Hook";
+import { CheakoutDetails } from "../Slice/CheakoutSlice";
 
 function Cart() {
   const image_url = import.meta.env.VITE_IMAGE_URL;
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const items = useSelector((state) => state.cartdata.cart);
+  const apiCall = useApiCall();
+
   const totalItems = useMemo(() => {
     return items.reduce((totalItems, item) => totalItems + item.qty, 0);
   }, [items]);
@@ -28,13 +32,16 @@ function Cart() {
   return (
     <>
       <div
-        className={` w-[100vw] h-full sm:w-[28vw] bg-white dark:bg-gray-900 dark:text-white top-0 z-50 right-0 fixed sm:rounded-tl-md sm:rounded-bl-md p-6 ${
+        className={` w-[100vw] h-full sm:w-[28vw] bg-white dark:bg-gray-900 dark:text-white top-0 z-40 right-0 fixed sm:rounded-tl-md sm:rounded-bl-md p-6 ${
           isCartOpen ? "translate-x-0" : "translate-x-full"
         } transition-all duration-500 `}
       >
-        <button className=" w-full flex justify-end " onClick={() => dispatch(setIsopen())}>
-                    <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black" />
-                    </button>
+        <button
+          className=" w-full flex justify-end "
+          onClick={() => dispatch(setIsopen())}
+        >
+          <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black" />
+        </button>
 
         <div className="mt-8">
           <h1 className=" text-2xl font-medium text-center sm:text-3xl">
@@ -93,7 +100,6 @@ function Cart() {
                     <button
                       className="bg-red-600 text-white px-2 py-2 rounded-md"
                       onClick={() => {
-                        console.log("Deleting product:", item.productid);
                         dispatch(removeProduct(item.productid));
                       }}
                     >
@@ -118,11 +124,14 @@ function Cart() {
             TOTAL AMOUNT :{" "}
             <span className="sm:text-xl text-sm font-bold ">{totalAmount}</span>
           </p>
-          <button className="sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl"
-          onClick={() => {
-            navigate("/order")
-            dispatch(setIsopen())
-            }}>
+          <button
+            className="sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl"
+            onClick={() => {
+              navigate("cheakout");
+              dispatch(setIsopen());
+              apiCall(CheakoutDetails());
+            }}
+          >
             Cheak Out
           </button>
         </div>

@@ -6,16 +6,26 @@ import ShopCard from "./ShopCard";
 import Heading from "../Shered/Heading";
 import { changeCetegory } from "../Slice/CategorySlice";
 import { list_product } from "../Slice/ProductSlice";
+// import { setLoading } from "../Slice/LoadingSlice";
+import useApiCall from "../../APIcall/Hook";
 
 function Shop() {
   const ProductsData = useSelector((state) => state.data.product_items);
-  console.log(ProductsData);
   
-  const dispatch = useDispatch();
+  
 
-  useEffect(() => {
-    dispatch(list_product()); // Dispatch API call on component mount
-  }, [dispatch]);
+  const dispatch = useDispatch();
+  const apiCall = useApiCall();
+
+  // const get = () => {
+
+  //   apiCall(list_product);
+
+  // }
+
+   useEffect(() => {
+    apiCall(list_product());
+   } , [dispatch])
 
   useEffect(() => {
     AOS.init({

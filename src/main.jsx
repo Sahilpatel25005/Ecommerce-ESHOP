@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Shop from "./components/Shop/Shop.jsx";
 import { Provider } from "react-redux";
-import { store } from "./Store/Store.jsx";
+import store from "./Store/Store.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import About from "./components/About/About.jsx";
 import ProtectedRout from "./components/Protected_route/Protected_route.jsx";
@@ -22,6 +22,8 @@ import Login from "./components/Login/Login.jsx";
 import ForgotPassword from "./components/Login/Forgetpass.jsx";
 import Registration from "./components/Login/Registration.jsx";
 import PrivateRoute from "./components/Privateroute/Private.jsx";
+import ProductDetails from "./components/Shop/ProductDetails.jsx";
+import Cheakout from "./components/Cheakout/Cheakout.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +40,7 @@ const routes = createBrowserRouter(
         <Route path="current_order" element={<Current_order />} />
         <Route path="order_history" element={<Order_history />} />
         <Route path="shop/product/:id" element={<ProductDetails />} />
+        <Route path="cheakout" element={<Cheakout />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Route>
     </Route>

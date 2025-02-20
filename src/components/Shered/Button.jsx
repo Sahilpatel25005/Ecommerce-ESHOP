@@ -13,7 +13,7 @@ const Button = ({ text, bgColor, textColor, productData }) => {
         className={`${bgColor} ${textColor} py-2 px-8 rounded-full`}
         disabled
       >
-        Loading...
+        Shop Now
       </button>
     );
   }

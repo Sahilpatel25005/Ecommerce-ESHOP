@@ -22,7 +22,7 @@ const ShopCard = ({ data }) => {
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="pb-10 h-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center " >
           {data
             .filter((item) => {
               if (selectcategory === "All") {
