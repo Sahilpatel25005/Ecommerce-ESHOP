@@ -11,27 +11,13 @@ import useApiCall from "../../APIcall/Hook";
 
 function Shop() {
   const ProductsData = useSelector((state) => state.data.product_items);
-  
-  
 
-<<<<<<< HEAD
   const dispatch = useDispatch();
   const apiCall = useApiCall();
 
-  // const get = () => {
-
-  //   apiCall(list_product);
-
-  // }
-
-   useEffect(() => {
+  useEffect(() => {
     apiCall(list_product());
-   } , [dispatch])
-=======
-  useEffect( () => {
-    dispatch( list_product()); // Dispatch API call on component mount
   }, [dispatch]);
->>>>>>> origin/dhaval
 
   useEffect(() => {
     AOS.init({

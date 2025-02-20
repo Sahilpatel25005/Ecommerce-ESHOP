@@ -73,19 +73,19 @@ function Current_order() {
                     ${order.amount}
                   </div>
                   <div className="w-full md:w-1/6">
-                  <span
-                          className={`px-3 py-1 text-sm rounded-full ${
-                            order.status === "Delivered"
-                              ? "bg-green-100 text-green-700"
-                              : order.status === "Processing"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : order.status === "Pending"
-                              ? "bg-blue-100 text-blue-700"
-                              : "bg-red-100 text-red-700"
-                          }`}
-                        >
-                          {order.status}
-                        </span>
+                    <span
+                      className={`px-3 py-1 text-sm rounded-full ${
+                        order.status === "Delivered"
+                          ? "bg-green-100 text-green-700"
+                          : order.status === "Processing"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : order.status === "Pending"
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-red-100 text-red-700"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
                   </div>
                 </div>
               );

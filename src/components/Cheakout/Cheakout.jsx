@@ -1,15 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import useApiCall from "../../APIcall/Hook";
+import { order_placed } from "../Slice/OrderPlaceSlice";
+import { fetchCartItems } from "../Slice/CartSlice";
 
 function Cheakout() {
   const details = useSelector((state) => state.cheakout.cheakout_list);
+
   const navigate = useNavigate();
 
-  
+  const apiCall = useApiCall();
 
-  
   const user = {
     fname: details.fname,
     lname: details.lname,
@@ -92,7 +94,8 @@ function Cheakout() {
             className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-600 transition duration-300"
             onClick={() => {
               navigate("/current_order");
-              
+              apiCall(order_placed());
+              apiCall(fetchCartItems());
             }}
           >
             Place Order

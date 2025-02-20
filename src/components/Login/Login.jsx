@@ -41,7 +41,6 @@ const Login = () => {
         setLoginError(res.error);
       } else {
         localStorage.setItem("token", res.access_token);
-        console.log(res.access_token);
         navigate("/Home");
       }
     } catch (error) {

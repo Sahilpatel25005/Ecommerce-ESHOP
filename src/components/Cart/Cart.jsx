@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
-import { useEffect } from "react";
 import {
   removeProduct,
   incereseQty,
@@ -29,8 +28,9 @@ function Cart() {
   }, [items]);
 
   useEffect(() => {
-    dispatch(fetchCartItems());
-  }, [dispatch]);
+    apiCall(fetchCartItems());
+  }, []);
+  
 
   const totalAmount = useMemo(() => {
     return items.reduce(
@@ -60,7 +60,7 @@ function Cart() {
           <hr className="mt-4" />
           <div className="mt-3 dark:bg-gray-900 dark:text-white p-4 rounded-md">
             {/* Scrollable Cart Items Container */}
-            <div className="max-h-[50vh] overflow-y-auto">
+            <div className="max-h-[50vh] overflow-y-auto sc">
               {items.length > 0 ? (
                 items.map((item) => (
                   <div
@@ -114,15 +114,6 @@ function Cart() {
                         <AiFillDelete className="text-xl" />
                       </button>
                     </div>
-
-                    <button
-                      className="bg-red-600 text-white px-2 py-2 rounded-md"
-                      onClick={() => {
-                        dispatch(removeProduct(item.productid));
-                      }}
-                    >
-                      <AiFillDelete className="text-xl" />
-                    </button>
                   </div>
                 ))
               ) : (
@@ -143,7 +134,10 @@ function Cart() {
             <span className="sm:text-xl text-sm font-bold ">{totalAmount}</span>
           </p>
           <button
-            className="sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl"
+            className={`sm:w-full w-full bg-green-600  py-2 rounded-md text-xl font-bold sm:text-2xl ${
+              items.length === 0 && "cursor-not-allowed opacity-50"
+            }`}
+            disabled={items.length === 0}
             onClick={() => {
               navigate("cheakout");
               dispatch(setIsopen());

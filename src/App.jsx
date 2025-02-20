@@ -12,7 +12,7 @@ import Blog from "./components/Blog/Blog";
 import Partner from "./components/Partner/Partner";
 import Footer from "./components/Footer/Footer";
 import Popup from "./components/Popup/Popup";
-import Menu_Navlink from "./components/Menu/Menu_Navlink";
+
 
 import AOS from "aos";
 import "aos/dist/aos.css";
