@@ -21,6 +21,7 @@ export const incereseQty = createAsyncThunk(
     }
   }
 );
+
 // Decrease Quantity
 export const dicereseQty = createAsyncThunk(
   "cart/dicereseQty",
@@ -54,6 +55,20 @@ export const removeProduct = createAsyncThunk(
     }
   }
 );
+
+//
+export const fetchCartItems = createAsyncThunk(
+  "cart/fetchCartItems",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await apiCall(`/cart/cart_item`);
+      return response.cartitem || []; // Ensure it always returns an array
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const CartData = createSlice({
   name: "cartdata",
   initialState: {
@@ -68,12 +83,22 @@ const CartData = createSlice({
       if (existItem) {
         existItem.qty += 1;
       } else {
-        state.cart.push({ ...action.payload, qty: 1 });
+        state.cart.push({ ...action.payload, qty: action.payload.qty });
       }
     },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchCartItems.fulfilled, (state, action) => {
+        state.cart = action.payload; // Set fetched cart items in state
+      })
+      //n
+      .addCase(fetchCartItems.rejected, (state, action) => {
+        console.error("Error fetching cart:", action.payload);
+        state.status = "failed";
+        state.error = action.payload;
+        state.cart = []; // Prevent undefined state
+      })
       .addCase(incereseQty.fulfilled, (state, action) => {
         // console.log(state.cart);
 

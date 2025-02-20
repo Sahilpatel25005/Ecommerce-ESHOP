@@ -14,6 +14,7 @@ function Shop() {
   
   
 
+<<<<<<< HEAD
   const dispatch = useDispatch();
   const apiCall = useApiCall();
 
@@ -26,6 +27,11 @@ function Shop() {
    useEffect(() => {
     apiCall(list_product());
    } , [dispatch])
+=======
+  useEffect( () => {
+    dispatch( list_product()); // Dispatch API call on component mount
+  }, [dispatch]);
+>>>>>>> origin/dhaval
 
   useEffect(() => {
     AOS.init({
