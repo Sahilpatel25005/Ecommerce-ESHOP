@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useApiCall from "../../APIcall/Hook";
 import { order_placed } from "../Slice/OrderPlaceSlice";
-import { fetchCartItems } from "../Slice/CartSlice";
 
 function Cheakout() {
   const details = useSelector((state) => state.cheakout.cheakout_list);
@@ -95,7 +94,6 @@ function Cheakout() {
             onClick={() => {
               navigate("/current_order");
               apiCall(order_placed());
-              apiCall(fetchCartItems());
             }}
           >
             Place Order

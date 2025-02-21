@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useApiCall from "../../APIcall/Hook";
 import { list_pending_order } from "../Slice/PendingOrderSlice";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { fetchCartItems } from "../Slice/CartSlice";
 
 function Current_order() {
   const orders =
@@ -9,27 +12,48 @@ function Current_order() {
   const apiCall = useApiCall();
   const [newOrderId, setNewOrderId] = useState(null);
 
+  const msg = useSelector((state) => state.orderPlaced.placeOrder);
+  
+
+  const [toastShown, setToastShown] = useState(false);
+
+  const handleaToast = () => {
+    if (msg.message === undefined) {
+      return;
+    } else if (msg.message) {
+      toast.success(` ${msg.message}`);
+    } else if (msg.error) {
+      toast.error(` ${msg.error}`);
+    }
+    setToastShown(true);
+  };
+
+  useEffect(() => {
+    if (!toastShown) {
+      handleaToast();
+    }
+  }, [msg, toastShown]);
+
   useEffect(() => {
     apiCall(list_pending_order());
+    apiCall(fetchCartItems())
   }, []);
 
   useEffect(() => {
-    if (orders.length > 0) {
-      const lastOrder = orders[0];
-      setNewOrderId(lastOrder.orderid);
+    setNewOrderId(msg.orderid);
 
-      // Reset the new order ID after 3 seconds
-      const timer = setTimeout(() => {
-        setNewOrderId(null);
-      }, 2000);
+    // Reset the new order ID after 3 seconds
+    const timer = setTimeout(() => {
+      setNewOrderId(null);
+    }, 2000);
 
-      // Cleanup the timer
-      return () => clearTimeout(timer);
-    }
+    // Cleanup the timer
+    return () => clearTimeout(timer);
   }, [orders]);
 
   return (
     <div className="container mx-auto  min-h-[100vh] px-4 py-8 dark:text-white">
+      <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-3xl font-bold mb-6">Your Orders</h1>
 
       {/* <!-- Order List --> */}

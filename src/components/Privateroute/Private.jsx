@@ -6,7 +6,6 @@ import Menu_Navlink from "../Menu/Menu_Navlink";
 import Loading from "../Layout/Loading";
 import { useSelector } from "react-redux";
 
-
 const PrivateRoute = () => {
   const isAuthenticated = !!localStorage.getItem("token");
 
@@ -15,20 +14,18 @@ const PrivateRoute = () => {
   }
 
   const [Menuopen, setMenuopen] = React.useState(false);
-  const load = useSelector((state) => state.loading.loading)
+  const load = useSelector((state) => state.loading.loading);
 
-    
-  
   const handleMenuOpen = () => {
-     setMenuopen(!Menuopen);
-   };
+    setMenuopen(!Menuopen);
+  };
 
   return (
     <>
-    {load && <Loading /> }
-    
-      <Menu_Navlink handleMenuOpen={handleMenuOpen}  Menuopen = { Menuopen} />
-      <Navbar  handleMenuOpen={handleMenuOpen}/>
+      {load && <Loading />}
+
+      <Menu_Navlink handleMenuOpen={handleMenuOpen} Menuopen={Menuopen} />
+      <Navbar handleMenuOpen={handleMenuOpen} />
       <Cart />
       <Outlet />
     </>
