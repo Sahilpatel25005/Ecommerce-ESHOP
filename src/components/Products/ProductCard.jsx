@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Shered/Button";
-
+import { Link } from "react-router-dom";
 const ProductCard = ({ data }) => {
   const image_url = import.meta.env.VITE_IMAGE_URL;
 
@@ -36,7 +36,13 @@ const ProductCard = ({ data }) => {
               </div>
             </div>
             <div className="leading-7 ">
-              <h2 className="font-semibold">{data.name}</h2>
+              <Link
+                to={`/shop/product/${data.productid}`}
+                className="font-semibold text-xl hover:underline hover:text-blue-500"
+              >
+                <h2>{data.name}</h2>
+              </Link>
+              {/* <h2 className="font-semibold">{data.name}</h2> */}
               <h2 className="font-bold">${data.price}</h2>
             </div>
           </div>
