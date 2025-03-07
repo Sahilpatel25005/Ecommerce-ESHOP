@@ -1,14 +1,9 @@
 // ****************************** reusable function for api call ************************************
 
-import { useNavigate } from "react-router-dom";
-
-// import { setLoading } from "../components/Slice/LoadingSlice";
-// import store from "../Store/Store";
 const apiCall = async (endpoint, method = "GET", body = null) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
   try {
-    // dispatch(setLoading(true));
     const token = localStorage.getItem("token");
 
     const options = {
