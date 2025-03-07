@@ -30,7 +30,6 @@ function Cart() {
   useEffect(() => {
     apiCall(fetchCartItems());
   }, []);
-  
 
   const totalAmount = useMemo(() => {
     return items.reduce(

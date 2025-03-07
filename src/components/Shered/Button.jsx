@@ -40,8 +40,7 @@ const Button = ({ text, bgColor, textColor, productData }) => {
       }
     } catch (error) {
       toast.error(`Error: ${error.message}`);
-    }
-    finally{
+    } finally {
       dispatch(setLoading(false));
     }
   };

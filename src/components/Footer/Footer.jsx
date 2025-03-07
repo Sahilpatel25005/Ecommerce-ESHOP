@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  FaAcquisitionsIncorporated,
-  FaMobile,
-  FaMobileAlt,
-} from "react-icons/fa";
+import { FaMobileAlt } from "react-icons/fa";
 import {
   FaFacebook,
   FaInstagram,
@@ -28,7 +24,6 @@ const FooterLinks = [
     title: "Blog",
     link: "/#blog",
   },
- 
 ];
 
 const Footer = () => {

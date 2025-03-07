@@ -95,14 +95,14 @@ function About() {
               <div className="mt-5">
                 <div className="flex gap-9 mt-5 flex-col">
                   <p>
-                    At ESHOP, we’re more than just an online store –
-                    we’re a growing community of happy customers. Explore our
+                    At ESHOP, we’re more than just an online store – we’re a
+                    growing community of happy customers. Explore our
                     collections, find your favorite items, and enjoy exclusive
                     deals.
                   </p>{" "}
                   <p>
-                    Thank you for choosing ESHOP. We’re excited to
-                    serve you and be a part of your shopping journey!
+                    Thank you for choosing ESHOP. We’re excited to serve you and
+                    be a part of your shopping journey!
                   </p>
                   <p>The ESHOP Team</p>
                 </div>

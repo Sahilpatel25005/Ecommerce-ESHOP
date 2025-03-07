@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function Banner({ data }) {
   return (
     <div className="min-h-[550px] flex justify-center items-center py-12">

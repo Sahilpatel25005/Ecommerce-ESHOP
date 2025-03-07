@@ -9,8 +9,8 @@ import Searchslice from "../components/Slice/Search";
 import loadingSlice from "../components/Slice/LoadingSlice";
 import cheakoutSlice from "../components/Slice/CheakoutSlice";
 import itemSlice from "../components/Slice/OrderHistorySlice";
-import PendingitemSlice  from "../components/Slice/PendingOrderSlice";
-import  orderPlacedSlice  from "../components/Slice/OrderPlaceSlice";
+import PendingitemSlice from "../components/Slice/PendingOrderSlice";
+import orderPlacedSlice from "../components/Slice/OrderPlaceSlice";
 
 const store = configureStore({
   reducer: {
@@ -24,8 +24,8 @@ const store = configureStore({
     loading: loadingSlice,
     cheakout: cheakoutSlice,
     item: itemSlice,
-    pendingItem : PendingitemSlice,
-    orderPlaced : orderPlacedSlice
+    pendingItem: PendingitemSlice,
+    orderPlaced: orderPlacedSlice,
   },
 });
 

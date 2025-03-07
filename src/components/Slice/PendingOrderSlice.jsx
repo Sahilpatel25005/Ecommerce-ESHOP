@@ -18,7 +18,7 @@ export const PendingitemSlice = createSlice({
   name: "pendingItem",
   initialState: {
     pending_order_items: [],
-    loading: false, 
+    loading: false,
     error: null,
   },
   extraReducers: (builder) => {

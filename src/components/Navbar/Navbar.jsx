@@ -6,7 +6,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import DarkMode from "./DarkMode";
-import { NavLink,  useNavigate } from "react-router-dom"; // Import useNavigate here
+import { NavLink, useNavigate } from "react-router-dom"; // Import useNavigate here
 import { useDispatch, useSelector } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
 import { searchItem } from "../Slice/Search";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import useApiCall from "../../APIcall/Hook";
 import { list_pending_order } from "../Slice/PendingOrderSlice";
 import { Toaster } from "react-hot-toast";
@@ -14,7 +14,6 @@ function Current_order() {
   const [newOrderId, setNewOrderId] = useState(null);
 
   const msg = useSelector((state) => state.orderPlaced.placeOrder);
-  
 
   const [toastShown, setToastShown] = useState(false);
 

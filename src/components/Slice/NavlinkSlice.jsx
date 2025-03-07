@@ -17,7 +17,6 @@ const initialState = {
       name: "About",
       link: "/about",
     },
-    
   ],
 };
 

@@ -13,7 +13,6 @@ import Partner from "./components/Partner/Partner";
 import Footer from "./components/Footer/Footer";
 import Popup from "./components/Popup/Popup";
 
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -48,8 +47,6 @@ function App() {
     setOrderPopup(!orderPopup);
   };
 
-
- 
   useEffect(() => {
     AOS.init({
       duration: 800,

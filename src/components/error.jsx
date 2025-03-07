@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import apiCall from "./apiCall";
 
 const YourComponent = () => {
-  const [error, setError] = useState("");  // Local state for error message
+  const [error, setError] = useState(""); // Local state for error message
 
   const handleApiCall = async () => {
     try {

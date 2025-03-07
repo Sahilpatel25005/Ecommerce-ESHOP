@@ -4,7 +4,7 @@ import apiCall from "../../APIcall/APIcall";
 export const list_product = createAsyncThunk("list_product", async () => {
   try {
     const res = await apiCall("/list_product");
-    
+
     return res;
   } catch (error) {
     throw error.message;

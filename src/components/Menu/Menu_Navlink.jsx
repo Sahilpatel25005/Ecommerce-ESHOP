@@ -8,21 +8,21 @@ function Menu_Navlink({ handleMenuOpen, Menuopen }) {
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
 
-  
   return (
     <>
-      
       <div
         className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 z-40 shadow-lg sm:hidden
         transform ${Menuopen ? "translate-x-0" : "-translate-x-full"} 
         transition-transform duration-500 ease-in-out`}
       >
-        <button className="pt-8 w-full  flex justify-end px-12" onClick={handleMenuOpen}>
-            <ImCross className="bg-gray-200 p-3 rounded-full  text-5xl text-black" />
-            </button>
+        <button
+          className="pt-8 w-full  flex justify-end px-12"
+          onClick={handleMenuOpen}
+        >
+          <ImCross className="bg-gray-200 p-3 rounded-full  text-5xl text-black" />
+        </button>
         <div className="h-full w-full flex justify-center items-center">
           <div>
-            
             <ul className="flex gap-4 flex-col items-center">
               {MenuLinks.map((data, index) => (
                 <li key={index} onClick={handleMenuOpen}>
@@ -52,7 +52,10 @@ function Menu_Navlink({ handleMenuOpen, Menuopen }) {
                 <div className="absolute hidden group-hover:block w-[200px] rounded-md bg-white shadow-md dark:bg-gray-900 p-2">
                   <ul className="space-y-2">
                     {DropDown.map((data, index) => (
-                      <li key={index} className="hover:bg-primary/20 px-1 rounded-md">
+                      <li
+                        key={index}
+                        className="hover:bg-primary/20 px-1 rounded-md"
+                      >
                         <a
                           href={data.link}
                           className="text-gray-500 hover:text-black dark:hover:text-white duration-200 inline-block p-2 font-semibold"
