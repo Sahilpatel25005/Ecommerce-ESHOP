@@ -4,24 +4,23 @@ import { Link } from "react-router-dom";
 import apiCall from "../../APIcall/APIcall";
 
 const Registration = () => {
-  const [userId, setUserId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState(""); // Add email state
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // 👈 Loader state
   const navigate = useNavigate();
 
   const validate = () => {
     let errors = {};
 
-    if (!userId) errors.userId = "User ID is required";
     if (!firstName) errors.firstName = "First name is required";
     if (!lastName) errors.lastName = "Last name is required";
     if (!phoneNumber) errors.phoneNumber = "Phone number is required";
-    if (!email) errors.email = "Email is required"; // Add validation for email
+    if (!email) errors.email = "Email is required";
     if (!password) errors.password = "Password is required";
     if (!address) errors.address = "Address is required";
 
@@ -30,7 +29,7 @@ const Registration = () => {
       errors.phoneNumber = "Please enter a valid phone number";
     }
 
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Email regex pattern
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (email && !emailPattern.test(email)) {
       errors.email = "Please enter a valid email address";
     }
@@ -48,7 +47,9 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
     if (validate()) {
+      setLoading(true); // Start loader
       const registrationData = {
         fname: firstName,
         lname: lastName,
@@ -60,18 +61,17 @@ const Registration = () => {
 
       try {
         const response = await apiCall("/register", "POST", registrationData);
-        console.log();
-        if (!response.message) {
+        if (!response.massage) {
           throw new Error("Registration failed");
         }
-
-        console.log("Registration successful:");
-      navigate("/login");
+        navigate("/login");
       } catch (error) {
         setErrors((prevErrors) => ({
           ...prevErrors,
           apiError: error.message,
         }));
+      } finally {
+        setLoading(false); // Stop loader
       }
     }
   };
@@ -84,26 +84,15 @@ const Registration = () => {
         <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
           Registration Form
         </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="userId"
-              className="block text-sm font-medium text-gray-700"
-            >
-              User ID
-            </label>
-            <input
-              type="text"
-              id="userId"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md"
-            />
-            {errors.userId && (
-              <div className="text-red-500 text-sm mt-2">{errors.userId}</div>
-            )}
-          </div>
 
+        {/* Loader */}
+        {loading && (
+          <div className="flex justify-center mb-4">
+            <div className="w-9 h-9 border-4 border-black border-dashed rounded-full animate-spin"></div>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="firstName"
@@ -228,8 +217,9 @@ const Registration = () => {
           <button
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md text-lg font-semibold focus:outline-none hover:bg-blue-600 transition duration-300 ease-in-out"
+            disabled={loading} // Disable button while loading
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
 

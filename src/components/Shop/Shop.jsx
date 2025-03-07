@@ -6,7 +6,7 @@ import ShopCard from "./ShopCard";
 import Heading from "../Shered/Heading";
 import { changeCetegory } from "../Slice/CategorySlice";
 import { list_product } from "../Slice/ProductSlice";
-// import { setLoading } from "../Slice/LoadingSlice";
+
 import useApiCall from "../../APIcall/Hook";
 
 function Shop() {

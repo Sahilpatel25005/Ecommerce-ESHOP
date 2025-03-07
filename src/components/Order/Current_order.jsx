@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
 import useApiCall from "../../APIcall/Hook";
 import { list_pending_order } from "../Slice/PendingOrderSlice";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import { fetchCartItems } from "../Slice/CartSlice";
+import { clearOrderId } from "../Slice/OrderPlaceSlice";
 
 function Current_order() {
+  const dispatch = useDispatch();
   const orders =
     useSelector((state) => state.pendingItem.pending_order_items) || [];
   const apiCall = useApiCall();
@@ -36,7 +37,6 @@ function Current_order() {
 
   useEffect(() => {
     apiCall(list_pending_order());
-    apiCall(fetchCartItems())
   }, []);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ function Current_order() {
     // Reset the new order ID after 3 seconds
     const timer = setTimeout(() => {
       setNewOrderId(null);
+      dispatch(clearOrderId());
     }, 2000);
 
     // Cleanup the timer

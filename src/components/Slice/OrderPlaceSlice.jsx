@@ -18,6 +18,11 @@ export const orderPlacedSlice = createSlice({
     loading: false,
     error: null,
   },
+  reducers: {
+    clearOrderId: (state) => {
+      state.placeOrder = {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(order_placed.pending, (state) => {
       state.loading = true;
@@ -33,4 +38,5 @@ export const orderPlacedSlice = createSlice({
   },
 });
 
+export const { clearOrderId } = orderPlacedSlice.actions;
 export default orderPlacedSlice.reducer;

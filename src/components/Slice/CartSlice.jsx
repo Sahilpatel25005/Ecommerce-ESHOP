@@ -3,9 +3,7 @@ import apiCall from "../../APIcall/APIcall";
 
 export const incereseQty = createAsyncThunk(
   "cart/incereseQty",
-
   async (productId, { rejectWithValue }) => {
-    // console.log("Received productId:", productId);
     if (!productId) {
       return rejectWithValue("Product ID is undefined!");
     }
@@ -13,8 +11,6 @@ export const incereseQty = createAsyncThunk(
       const response = await apiCall(`/cart/increse`, "POST", {
         productid: productId,
       });
-
-      // console.log("API Response:", response);
       return response.cart_item;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -22,7 +18,6 @@ export const incereseQty = createAsyncThunk(
   }
 );
 
-// Decrease Quantity
 export const dicereseQty = createAsyncThunk(
   "cart/dicereseQty",
   async (productId, { rejectWithValue }) => {
@@ -56,13 +51,12 @@ export const removeProduct = createAsyncThunk(
   }
 );
 
-//
 export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (_, { rejectWithValue }) => {
     try {
       const response = await apiCall(`/cart/cart_item`);
-      return response.cartitem || []; // Ensure it always returns an array
+      return response.cartitem || [];
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -90,25 +84,21 @@ const CartData = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartItems.fulfilled, (state, action) => {
-        state.cart = action.payload; // Set fetched cart items in state
+        state.cart = action.payload;
       })
-      //n
       .addCase(fetchCartItems.rejected, (state, action) => {
         console.error("Error fetching cart:", action.payload);
         state.status = "failed";
         state.error = action.payload;
-        state.cart = []; // Prevent undefined state
+        state.cart = [];
       })
       .addCase(incereseQty.fulfilled, (state, action) => {
-        // console.log(state.cart);
-
         state.cart = state.cart.map((item) =>
           item.productid === action.payload.productid
             ? { ...item, qty: action.payload.qty }
             : item
         );
       })
-
       .addCase(dicereseQty.fulfilled, (state, action) => {
         state.cart = state.cart.map((item) =>
           item.productid === action.payload.productid
@@ -116,7 +106,6 @@ const CartData = createSlice({
             : item
         );
       })
-
       .addCase(removeProduct.fulfilled, (state, action) => {
         if (!action.payload || !action.payload.productid) {
           console.error("Invalid payload:", action.payload);

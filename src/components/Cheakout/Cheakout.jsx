@@ -1,14 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useApiCall from "../../APIcall/Hook";
 import { order_placed } from "../Slice/OrderPlaceSlice";
+import { fetchCartItems } from "../Slice/CartSlice";
 
 function Cheakout() {
+  const [loading, setLoading] = useState(false);
   const details = useSelector((state) => state.cheakout.cheakout_list);
 
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const apiCall = useApiCall();
 
   const user = {
@@ -18,8 +20,26 @@ function Cheakout() {
     mobile: details.monumber,
     address: details.address,
   };
+
+  const handlePlaceOrder = async () => {
+    setLoading(true);
+    try {
+      // 1️⃣ Place the order
+      await apiCall(order_placed());
+
+      // 2️⃣ Refresh the cart after placing order (optional)
+      await apiCall(fetchCartItems());
+
+      // 3️⃣ Navigate to the current order page
+      navigate("/current_order");
+    } catch (error) {
+      console.error("Order placement failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    //
     <div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
       <div className="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
         <h1 className="text-4xl font-bold mb-10 text-gray-800 dark:text-white text-center">
@@ -90,13 +110,13 @@ function Cheakout() {
 
         <div className="mt-10 flex justify-center">
           <button
-            className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-600 transition duration-300"
-            onClick={() => {
-              navigate("/current_order");
-              apiCall(order_placed());
-            }}
+            className={`bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-600 transition duration-300 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={handlePlaceOrder}
+            disabled={loading}
           >
-            Place Order
+            {loading ? "Placing Order..." : "Place Order"}
           </button>
         </div>
       </div>

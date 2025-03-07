@@ -3,6 +3,7 @@ import { addProduct } from "../Slice/CartSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import apiCall from "../../APIcall/APIcall";
+import { setLoading } from "../Slice/LoadingSlice";
 
 const Button = ({ text, bgColor, textColor, productData }) => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Button = ({ text, bgColor, textColor, productData }) => {
   };
 
   const handleAddToCart = async () => {
+    dispatch(setLoading(true));
     try {
       const response = await apiCall("/cart/add", "POST", {
         productid: productData.productid,
@@ -38,6 +40,9 @@ const Button = ({ text, bgColor, textColor, productData }) => {
       }
     } catch (error) {
       toast.error(`Error: ${error.message}`);
+    }
+    finally{
+      dispatch(setLoading(false));
     }
   };
 
