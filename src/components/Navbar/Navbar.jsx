@@ -131,6 +131,7 @@ function Navbar({ handleMenuOpen }) {
               group-hover:text-primary duration-200"
               >
                 <FaSignOutAlt className="text-xl" />
+                
               </button>
             </div>
           </div>

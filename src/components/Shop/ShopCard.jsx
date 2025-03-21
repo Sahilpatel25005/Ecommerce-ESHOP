@@ -46,7 +46,7 @@ const ShopCard = ({ data }) => {
                 key={data.id}
                 className="group  w-full p-5 rounded-md shadow-lg duration-200 dark:shadow-gray-800"
               >
-                <div className="relative mb-8 flex justify-center items-center bg-gray-200j ">
+                <div className="relative mb-8 flex justify-center items-center bg-gray-200">
                   <img
                     src={`${image_url}/src/assets/products/${data.image}`}
                     alt=""
