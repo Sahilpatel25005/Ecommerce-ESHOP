@@ -46,20 +46,20 @@ function Cart() {
         } transition-all duration-500`}
       >
         <button
-          className=" w-full flex justify-end "
-          onClick={() => dispatch(setIsopen())}
+          className=" w-full cursor-default  flex justify-end"
+          // onClick={}
         >
-          <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black" />
+          <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black cursor-pointer" onClick={() => dispatch(setIsopen())} />
         </button>
 
-        <div className="mt-8">
+        <div className="mt-4">
           <h1 className="text-2xl font-medium text-center sm:text-3xl">
             Bring Your Item in Cart.
           </h1>
           <hr className="mt-4" />
-          <div className="mt-3 dark:bg-gray-900 dark:text-white p-4 rounded-md">
+          <div className=" dark:bg-gray-900 dark:text-white p-4 rounded-md">
             {/* Scrollable Cart Items Container */}
-            <div className="max-h-[50vh] overflow-y-auto sc">
+            <div className="max-h-[50vh] overflow-y-auto">
               {items.length > 0 ? (
                 items.map((item) => (
                   <div

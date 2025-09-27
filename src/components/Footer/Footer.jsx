@@ -49,7 +49,7 @@ const Footer = () => {
             </p>
 
             <a
-              href="#"
+              href="https://github.com/Sahilpatel25005"
               className="mt-4 inline-block bg-primary py-1 px-3 text-sm rounded-2xl"
             >
               Vist My Github Profile

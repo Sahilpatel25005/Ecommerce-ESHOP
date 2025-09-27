@@ -22,6 +22,8 @@ import Registration from "./components/Login/Registration.jsx";
 import PrivateRoute from "./components/Privateroute/Private.jsx";
 import ProductDetails from "./components/Shop/ProductDetails.jsx";
 import Cheakout from "./components/Cheakout/Cheakout.jsx";
+import Admin from "./components/Admin/Admin.jsx";
+import AdminAddProduct from "./components/Admin/AdminAddProduct.jsx";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const routes = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/register" element={<Registration />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/adminaddproduct" element={<AdminAddProduct />} />
       <Route element={<PrivateRoute />}>
         <Route path="/Home" element={<App />} />
         <Route path="shop" element={<Shop />} />
@@ -50,3 +54,4 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={routes}></RouterProvider>
   </Provider>
 );
+ 

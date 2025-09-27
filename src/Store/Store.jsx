@@ -11,6 +11,8 @@ import cheakoutSlice from "../components/Slice/CheakoutSlice";
 import itemSlice from "../components/Slice/OrderHistorySlice";
 import PendingitemSlice from "../components/Slice/PendingOrderSlice";
 import orderPlacedSlice from "../components/Slice/OrderPlaceSlice";
+import AdminAddProductSlice from "../components/Slice/AdminSlice"
+import GenerateProductDetailsSlice from "../components/Slice/ProductDetailsGenerate";
 
 const store = configureStore({
   reducer: {
@@ -26,6 +28,8 @@ const store = configureStore({
     item: itemSlice,
     pendingItem: PendingitemSlice,
     orderPlaced: orderPlacedSlice,
+    admin_add_product: AdminAddProductSlice,
+    generated_product_details: GenerateProductDetailsSlice,
   },
 });
 

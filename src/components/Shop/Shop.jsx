@@ -11,6 +11,10 @@ import useApiCall from "../../APIcall/Hook";
 
 function Shop() {
   const ProductsData = useSelector((state) => state.data.product_items);
+  // console.log("ProductsData: ", ProductsData);
+
+  // let ProductsData2 = useSelector((state) => state.search.search);
+  // console.log("ProductsData2: ", ProductsData2);
 
   const dispatch = useDispatch();
   const apiCall = useApiCall();
@@ -29,8 +33,9 @@ function Shop() {
     AOS.refresh();
   }, []);
 
-  const categoryArray = ["All", "Watch", "Headphone"];
+  const categoryArray = ["All", "SamrtWatch", "HeadPhones"];
   const selectcategory = useSelector((state) => state.category.categorytype);
+
 
   const handleCategory = (category) => {
     dispatch(changeCetegory(category));

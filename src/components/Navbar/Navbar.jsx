@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsopen } from "../Slice/HandleCart";
 import { searchItem } from "../Slice/Search";
 import { TiThMenu } from "react-icons/ti";
+import useApiCall from "../../APIcall/Hook";
 
 function Navbar({ handleMenuOpen }) {
+  const apiCall = useApiCall();
   const DropDown = useSelector((state) => state.dropdown.DropdownData);
   const MenuLinks = useSelector((state) => state.navlink.MenuLinks);
   const cardItem = useSelector((state) => state.cartdata.cart);
@@ -30,13 +32,17 @@ function Navbar({ handleMenuOpen }) {
     navigate("/login");
   };
 
+  const[search, setSearch] = React.useState("");
+
+  
+
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-30 ">
       <div className="py-4">
         <div className="container flex justify-between items-center">
           <div className="flex gap-4 items-center">
             <a
-              href="#"
+              href="/home"
               className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl hidden sm:block  "
             >
               Eshop
@@ -96,14 +102,23 @@ function Navbar({ handleMenuOpen }) {
             <div className="relative group hidden sm:block">
               <input
                 type="text"
+                value={search}
                 placeholder="Search"
                 className="search-bar "
-                onChange={(e) => dispatch(searchItem(e.target.value))}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    apiCall(searchItem(search));
+                    setSearch("");
+                  }
+                }}
               />
-              <FaSearch
-                className="text-xl text-gray-600 bg-white dark:bg-gray-900 dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3
-              group-hover:text-primary duration-200"
-              />
+              {search === "" && (
+                <FaSearch
+                  className="text-xl text-gray-600 bg-white dark:bg-gray-900 dark:text-gray-400 absolute top-1/2 -translate-y-1/2 right-3
+                  group-hover:text-primary duration-200"
+                />
+              )}
             </div>
             <div className="flex relative">
               <FaShoppingCart

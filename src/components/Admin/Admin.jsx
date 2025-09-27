@@ -39,13 +39,12 @@ const Login = () => {
     };
 
     try {
-      const res = await apiCall("/login", "post", data);
-
+      const res = await apiCall("/admin", "post", data);
       if (res.error) {
         setLoginError(res.error);
       } else {
         localStorage.setItem("token", res.access_token);
-        navigate("/Home");
+        navigate("/adminaddproduct");
       }
     } catch (error) {
       if (error.message === "Token expired") {
@@ -69,7 +68,7 @@ const Login = () => {
         data-aos="fade-up"
       >
         <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
-          Login to Your Account
+          Login to Admin Account
         </h2>
 
         {/* Loader */}
@@ -133,27 +132,6 @@ const Login = () => {
             >
               Forgot your password?
             </Link>
-          </div>
-
-          <div className="text-center mt-4">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
-              <Link
-                to="/register"
-                className="text-sm text-blue-900 hover:text-primary"
-              >
-                Signup
-              </Link>
-            </p>
-            <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
-              <Link
-                to="/admin"
-                className="text-sm text-blue-900 hover:text-primary"
-              >
-                Admin
-              </Link>
-            </p>
           </div>
         </form>
       </div>

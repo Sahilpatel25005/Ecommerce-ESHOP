@@ -4,7 +4,6 @@ import apiCall from "../../APIcall/APIcall";
 export const order_placed = createAsyncThunk("order_placed", async () => {
   try {
     const res = await apiCall("/order", "POST");
-
     return res;
   } catch (error) {
     throw error.message;

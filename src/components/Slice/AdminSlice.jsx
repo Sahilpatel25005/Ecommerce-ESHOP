@@ -3,11 +3,11 @@ import apiCall from "../../APIcall/APIcall";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
-export const searchItem = createAsyncThunk("serchItem", async (search) => {
+export const admin_add_product = createAsyncThunk("admin_add_product", async (product) => {
   try {
    
-    const res = await apiCall("/search", "POST", {
-      query: search,
+    const res = await apiCall("/searchadmin_add_product", "POST", {
+      query: product,
     });
     return res;
   } catch (error) {
@@ -15,22 +15,22 @@ export const searchItem = createAsyncThunk("serchItem", async (search) => {
   }
 });
 
-const Searchslice = createSlice({
-  name: "search",
+const AdminAddProductSlice = createSlice({
+  name: "admin_add_product",
   initialState: {
-    search: [],
+    product: [],
     loading: false,
   },
   extraReducers: (buider) => {
     buider
-    .addCase(searchItem.pending, (state) => {
+    .addCase(admin_add_product.pending, (state) => {
         state.loading = true;
     })
-      .addCase(searchItem.fulfilled, (state, action) => {
-        state.search = action.payload;
+      .addCase(admin_add_product.fulfilled, (state, action) => {
+        state.admin_add_product = action.payload;
         state.loading = false;
       })
-      .addCase(searchItem.rejected, (state, action) => {
+      .addCase(admin_add_product.rejected, (state, action) => {
         console.log("item is not in store that you have to search");
         state.search.push(action.payload);
         // console.log("item is not in store that you have to search", state.search);
@@ -38,4 +38,4 @@ const Searchslice = createSlice({
   },
 });
 
-export default Searchslice.reducer;
+export default AdminAddProductSlice.reducer;
