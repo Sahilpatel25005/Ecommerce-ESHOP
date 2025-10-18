@@ -49,7 +49,7 @@ function Shop() {
             title="Make Your Day Special"
             subtitle={"The best Products for you..."}
           />
-          <div className="mb-6 flex gap-5 justify-center sm:justify-start">
+          {/* <div className="mb-6 flex gap-5 justify-center sm:justify-start">
             {categoryArray.map((category, index) => (
               <button
                 key={index}
@@ -62,7 +62,7 @@ function Shop() {
                 {category}
               </button>
             ))}
-          </div>
+          </div> */}
           <ShopCard data={ProductsData} />
         </div>
       </div>

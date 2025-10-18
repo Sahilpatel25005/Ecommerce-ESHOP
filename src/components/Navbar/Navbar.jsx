@@ -45,7 +45,7 @@ function Navbar({ handleMenuOpen }) {
               href="/home"
               className="text-primary font-semibold text-2xl uppercase tracking-widest sm:text-3xl hidden sm:block  "
             >
-              Eshop
+              Fresho
             </a>
 
             <button onClick={handleMenuOpen} className="lg:hidden">

@@ -44,7 +44,7 @@ const Login = () => {
         setLoginError(res.error);
       } else {
         localStorage.setItem("token", res.access_token);
-        navigate("/adminaddproduct");
+        navigate("/productmanagement");
       }
     } catch (error) {
       if (error.message === "Token expired") {

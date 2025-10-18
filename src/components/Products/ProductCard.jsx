@@ -4,6 +4,7 @@ import Button from "../Shered/Button";
 const ProductCard = ({ data }) => {
   const image_url = import.meta.env.VITE_IMAGE_URL;
 
+
   return (
     <div className="mb-10 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
@@ -16,7 +17,7 @@ const ProductCard = ({ data }) => {
           >
             <div className="relative mb-8 ">
               <img
-                src={`${image_url}/src/assets/products/${data.image}`}
+                src={`${image_url}/public/products/${data.image}`}
                 alt=""
                 className="h-[180px] w-[260px] object-cover rounded-md  "
               />
@@ -37,7 +38,7 @@ const ProductCard = ({ data }) => {
             </div>
             <div className="leading-7 ">
               <h2 className="font-semibold">{data.name}</h2>
-              <h2 className="font-bold">${data.price}</h2>
+              <h2 className="font-bold">₹{data.price}</h2>
             </div>
           </div>
         ))}

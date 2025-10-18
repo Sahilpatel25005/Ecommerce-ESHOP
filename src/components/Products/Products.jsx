@@ -20,11 +20,11 @@ const Products = () => {
       ProductsData2[i].productid == 1 ||
       ProductsData2[i].productid == 2 ||
       ProductsData2[i].productid == 3 ||
-      ProductsData2[i].productid == 4 ||
-      ProductsData2[i].productid == 8 ||
-      ProductsData2[i].productid == 9 ||
-      ProductsData2[i].productid == 10 ||
-      ProductsData2[i].productid == 11
+      ProductsData2[i].productid == 4 
+      // ProductsData2[i].productid == 8 ||
+      // ProductsData2[i].productid == 9 ||
+      // ProductsData2[i].productid == 10 ||
+      // ProductsData2[i].productid == 11
     ) {
       product.push(ProductsData2[i]);
     }

@@ -5,8 +5,8 @@ import Navbar from "./components/Navbar/Navbar";
 import React, { useEffect, useState } from "react";
 import Services from "./components/Services/Services";
 import Banner from "./components/Banner/Banner";
-import headphone from "./assets/Hero/headphone.png";
-import smartwatch2 from "./assets/cetegory/smartwatch2.png";
+import headphone from "./assets/Hero/tomato.png";
+import smartwatch2 from "./assets/Hero/green-chili.png";
 import Products from "./components/Products/Products";
 import Blog from "./components/Blog/Blog";
 import Partner from "./components/Partner/Partner";
@@ -19,26 +19,26 @@ import "aos/dist/aos.css";
 function App() {
   const BannerData = {
     discount: "30% OFF",
-    title: "Fine Smile",
+    title: "FRESH HARVEST",
     date: "10 Jan to 28 Jan",
     image: headphone,
-    title2: "Air Solo Bass",
-    title3: "Winter Sale",
+    title2: "Organic Tomato",
+    title3: "Winter Offer",
     title4:
-      "Headphones let a single user listen to an audio source privately, in contrast to a loudspeaker, which emits sound into the open air for anyone nearby to hear. ",
+      "Enjoy nature’s freshness with our handpicked organic tomatoes — juicy, healthy, and grown with love. Perfect for your daily meals and full of natural goodness.",
     bgColor: "#f42c37",
   };
 
   const BannerData2 = {
     discount: "30% OFF",
-    title: "Happy Hours",
+    title: "GREEN DELIGHT",
     date: "14 Jan to 28 Jan",
     image: smartwatch2,
-    title2: "Smart Solo",
+    title2: "Farm Fresh Vegetables",
     title3: "Winter Sale",
     title4:
-      "A smartwatch is a portable device worn on the wrist that supports apps and acts as an extension of your mobile phone in some cases.",
-    bgColor: "#2dcc6f",
+      "Taste the freshness of nature with our range of green, organic vegetables — from farm to your plate, picked fresh every day.",
+    bgColor: "#7CB342",
   };
 
   const [orderPopup, setOrderPopup] = React.useState(false);
@@ -61,7 +61,7 @@ function App() {
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden pt-6">
       <Hero handleOrderPopup={handleOrderPopup} />
       <Cetegory />
-      <Cetagory2 />
+      {/* <Cetagory2 /> */}
       <Services />
       <Banner data={BannerData} />
       <Products />

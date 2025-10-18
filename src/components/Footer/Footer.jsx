@@ -36,24 +36,23 @@ const Footer = () => {
               href="#"
               className="text-2xl font-semibold text-primary uppercase tracking-widest sm:text-3xl mb-3 "
             >
-              Eshop
+              FRESHO
             </a>
 
             <p className="text-gray-600 dark:text-white/70  lg:pr-24 pt-3">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum
-              reiciendis porro fugit libero, molestiae cupiditate!
+              We believe in healthy living. Our vegetables are grown with care, harvested fresh, and delivered straight from local farms to your kitchen.
             </p>
 
-            <p className="text-gray-500 mt-4">
+            {/* <p className="text-gray-500 mt-4">
               Made with 💖 by The Coding Journey
-            </p>
+            </p> */}
 
-            <a
+            {/* <a
               href="https://github.com/Sahilpatel25005"
               className="mt-4 inline-block bg-primary py-1 px-3 text-sm rounded-2xl"
             >
               Vist My Github Profile
-            </a>
+            </a> */}
           </div>
 
           <div className="col-span-2 grid grid-cols-2 sm:grid-cols-3 md:pl-10">
@@ -96,13 +95,13 @@ const Footer = () => {
               <div className="">
                 <div className="flex gap-3 items-center">
                   <FaLocationArrow />
-                  <p>Noida , Uttar Pradesh</p>
+                  <p>Rajkot , Gujarat</p>
                 </div>
                 <div className="flex gap-3 items-center pt-3">
                   <FaMobileAlt />
                   <p>+91 99999 99999</p>
                 </div>
-                <div className="flex items-center mt-6 gap-3">
+                {/* <div className="flex items-center mt-6 gap-3">
                   <a href="#">
                     <FaInstagram className="text-3xl  hover:text-primary duration-300" />
                   </a>
@@ -112,7 +111,7 @@ const Footer = () => {
                   <a href="#">
                     <FaLinkedin className="text-3xl  hover:text-primary duration-300" />
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

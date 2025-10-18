@@ -13,7 +13,7 @@ import { FaMinus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import useApiCall from "../../APIcall/Hook";
-import { CheakoutDetails } from "../Slice/CheakoutSlice";
+
 
 function Cart() {
   const image_url = import.meta.env.VITE_IMAGE_URL;
@@ -37,6 +37,11 @@ function Cart() {
       0
     );
   }, [items]);
+
+
+  
+
+
 
   return (
     <>
@@ -68,7 +73,7 @@ function Cart() {
                   >
                     <div className="flex items-center gap-4">
                       <img
-                        src={`${image_url}/src/assets/products/${item.image}`}
+                        src={`${image_url}/public/products/${item.image}`}
                         alt=""
                         className="w-[50px] h-[50px] object-cover"
                       />
@@ -140,7 +145,7 @@ function Cart() {
             onClick={() => {
               navigate("cheakout");
               dispatch(setIsopen());
-              apiCall(CheakoutDetails());
+              
             }}
           >
             Cheak Out

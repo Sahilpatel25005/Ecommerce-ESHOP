@@ -49,7 +49,7 @@ const ShopCard = ({ data }) => {
               >
                 <div className="relative mb-8 flex justify-center items-center bg-gray-200">
                   <img
-                    src={`${image_url}/src/assets/products/${data.image}`}
+                    src={`${image_url}/public/products/${data.image}`}
                     alt=""
                     className="h-[290px] w-[290px] object-cover rounded-md "
                   />
@@ -72,7 +72,7 @@ const ShopCard = ({ data }) => {
                 <div className="leading-7   ml-5">
                   <h2 className="font-semibold text-xl">{data.name}</h2>
 
-                  <h2 className="font-bold text-2xl">${data.price}</h2>
+                  <h2 className="font-bold text-2xl">₹{data.price}</h2>
                   <div className="flex items-center justify-between">
                     <div className="flex gap-2  pt-2">
                       {[...Array(5)].map((_, index) => {

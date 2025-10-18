@@ -24,6 +24,11 @@ import ProductDetails from "./components/Shop/ProductDetails.jsx";
 import Cheakout from "./components/Cheakout/Cheakout.jsx";
 import Admin from "./components/Admin/Admin.jsx";
 import AdminAddProduct from "./components/Admin/AdminAddProduct.jsx";
+import PaymentFailed from "./components/Payment/payment_failed.jsx";
+import PaymentSuccess from "./components/Payment/payment_success.jsx";
+import ProductPage from "./components/Admin/ProductManagement.jsx";
+import ViewProducts from "./components/Admin/ViewProduct.jsx";
+
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +38,9 @@ const routes = createBrowserRouter(
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/register" element={<Registration />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/productmanagement" element={<ProductPage />} />
       <Route path="/adminaddproduct" element={<AdminAddProduct />} />
+      <Route path="/view-products" element={<ViewProducts />} />
       <Route element={<PrivateRoute />}>
         <Route path="/Home" element={<App />} />
         <Route path="shop" element={<Shop />} />
@@ -43,6 +50,8 @@ const routes = createBrowserRouter(
         <Route path="order_history" element={<Order_history />} />
         <Route path="shop/product/:id" element={<ProductDetails />} />
         <Route path="cheakout" element={<Cheakout />} />
+        <Route path="payment-failed" element={<PaymentFailed />} />
+        <Route path="payment-success" element={<PaymentSuccess />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Route>
     </Route>
@@ -55,3 +64,6 @@ createRoot(document.getElementById("root")).render(
   </Provider>
 );
  
+// bg-gradient-to-l from-green-200 to-emerald-400
+// bg-gradient-to-l from-lime-100 to-green-200
+// bg-gradient-to-l from-green-100 to-green-300

@@ -1,8 +1,8 @@
 import React from "react";
 import Button from "../../components/Shered/Button";
-import Image1 from "../../assets/cetegory/earphone.png";
-import Image2 from "../../assets/cetegory/watch.png";
-import Image3 from "../../assets/cetegory/macbook.png";
+import Image1 from "../../assets/cetegory/olives.png";
+import Image2 from "../../assets/cetegory/yellow_chilli.png";
+import Image3 from "../../assets/cetegory/chilli.png";
 
 const Cetegory = () => {
   return (
@@ -14,7 +14,7 @@ const Cetegory = () => {
               <p className="mb-[2px] text-gray-400">Enjoy</p>
               <p className="text-2xl font-semibold mb-[2px]">With</p>
               <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-3">
-                Earphone
+                Olive
               </p>
               <Button
                 text="Browse"
@@ -26,7 +26,7 @@ const Cetegory = () => {
             <img
               src={Image1}
               alt=""
-              className="w-[320px] absolute bottom-0 lg:top-[40px] -right-4"
+              className="w-[320px] absolute bottom-0 lg:top-[5px] -right-4"
             />
           </div>
           <div className="py-10 pl-5 rounded-3xl bg-gradient-to-br from-brandYellow to-brandYellow/90 text-white relative flex items-end ">
@@ -34,7 +34,7 @@ const Cetegory = () => {
               <p className="mb-[2px] text-white">Enjoy</p>
               <p className="text-2xl font-semibold mb-[2px]">With</p>
               <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-3">
-                Gadget
+                Yellow chilli
               </p>
               <Button
                 text="Browse"
@@ -45,7 +45,7 @@ const Cetegory = () => {
             <img
               src={Image2}
               alt=""
-              className="w-[320px] absolute  lg:top-[40px] -right-4"
+              className="w-[320px] absolute  lg:top-[-10px] -right-16"
             />
           </div>
           <div className=" sm:col-span-2 py-10 pl-5 rounded-3xl bg-gradient-to-br from-primary to-primary/90 text-white relative flex items-end ">
@@ -53,7 +53,7 @@ const Cetegory = () => {
               <p className="mb-[2px] text-white ">Enjoy</p>
               <p className="text-2xl font-semibold mb-[2px]">With</p>
               <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-3">
-                Laptop
+                Fresh Chilli
               </p>
               <Button
                 text="Browse"

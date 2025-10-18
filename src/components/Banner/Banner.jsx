@@ -26,7 +26,7 @@ function Banner({ data }) {
             <img
               src={data.image}
               alt=""
-              className="scale-125 w-[250px] md:w-[340px] mx-auto drop-shadow-2xl object-cover"
+              className="scale-150 w-[250px] md:w-[340px] mx-auto drop-shadow-2xl object-cover"
             />
           </div>
 

@@ -33,7 +33,7 @@ const Cetagory2 = () => {
               <p className="mb-[2px] text-white">Enjoy</p>
               <p className="text-2xl font-semibold mb-[2px]">With</p>
               <p className="text-4xl xl:text-5xl font-bold opacity-20 mb-3">
-                Oculus
+                Fresh veggies
               </p>
               <Button
                 text="Browse"
