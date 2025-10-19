@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { CheakoutDetails } from "../Slice/CheakoutSlice";
 import useApiCall from "../../APIcall/Hook";
 
 function Checkout() {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+
   const [loading, setLoading] = useState(false);
   const [promocode, setPromocode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
@@ -19,11 +21,11 @@ function Checkout() {
   }, []);
 
   const user = {
-    fname: details.fname,
-    lname: details.lname,
-    email: details.email,
-    mobile: details.monumber,
-    address: details.address,
+    'First Name': details.FirstName,
+    'Last Name': details.LastName,
+    'Email': details.Email,
+    'Mobile Number': details.MobileNnumber,
+    'Address': details.Address,
   };
 
   // 🔹 Apply Promo Code (Backend Validation)
@@ -40,7 +42,7 @@ function Checkout() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        `http://127.0.0.1:8000/user_details?promocode_name=${promocode}`,
+        `${baseUrl}/user_details?promocode_name=${promocode}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +80,7 @@ function Checkout() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        "http://127.0.0.1:8000/stripe_payment/create-checkout-session",
+        `${baseUrl}/stripe_payment/create-checkout-session`,
         {
           method: "POST",
           headers: {

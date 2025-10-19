@@ -49,7 +49,7 @@ const ShopCard = ({ data }) => {
               >
                 <div className="relative mb-8 flex justify-center items-center bg-gray-200">
                   <img
-                    src={`${image_url}/public/products/${data.image}`}
+                    src={`${image_url}/products/${data.image}`}
                     alt=""
                     className="h-[290px] w-[290px] object-cover rounded-md "
                   />

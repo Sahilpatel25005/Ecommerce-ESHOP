@@ -17,7 +17,7 @@ const ProductCard = ({ data }) => {
           >
             <div className="relative mb-8 ">
               <img
-                src={`${image_url}/public/products/${data.image}`}
+                src={`${image_url}/products/${data.image}`}
                 alt=""
                 className="h-[180px] w-[260px] object-cover rounded-md  "
               />

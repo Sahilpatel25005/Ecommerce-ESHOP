@@ -39,7 +39,7 @@ const Login = () => {
     };
 
     try {
-      const res = await apiCall("/login", "post", data);
+      const res = await apiCall("/login/", "post", data);
 
       if (res.error) {
         setLoginError(res.error);
@@ -51,7 +51,7 @@ const Login = () => {
       if (error.message === "Token expired") {
         setLoginError("Your session has expired. Please log in again.");
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/login/");
       } else {
         setLoginError("An error occurred. Please try again later.");
       }
