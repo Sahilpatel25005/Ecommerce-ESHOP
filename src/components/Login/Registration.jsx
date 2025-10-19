@@ -61,17 +61,25 @@ const Registration = () => {
 
       try {
         const response = await apiCall("/register", "POST", registrationData);
-        if (!response.massage) {
+
+        if (response.error) {
+          // Show backend error to user
+          throw new Error(response.error);
+        }
+
+        if (!response.message) {
           throw new Error("Registration failed");
         }
+
+        alert(response.message); // optional success message
         navigate("/login");
       } catch (error) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          apiError: error.message,
+          apiError: error.message, // show exact message from backend
         }));
       } finally {
-        setLoading(false); // Stop loader
+        setLoading(false);
       }
     }
   };

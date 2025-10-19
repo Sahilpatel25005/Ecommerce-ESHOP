@@ -39,16 +39,25 @@ const Login = () => {
     };
 
     try {
-      const res = await apiCall("/login/", "post", data);
+      const res = await apiCall("/login/", "POST", data);
 
       if (res.error) {
+        // Backend returned a specific error
         setLoginError(res.error);
-      } else {
+      } else if (res.access_token) {
+        // Login successful
         localStorage.setItem("token", res.access_token);
         navigate("/Home");
+      } else {
+        // Unexpected response
+        setLoginError("An unexpected error occurred. Please try again.");
       }
     } catch (error) {
-      if (error.message === "Token expired") {
+      // Handle network errors or thrown errors
+      if (
+        error.message &&
+        error.message.toLowerCase().includes("token expired")
+      ) {
         setLoginError("Your session has expired. Please log in again.");
         localStorage.removeItem("token");
         navigate("/login/");
