@@ -4,7 +4,7 @@ const initialState = {
   DropdownData: [
     {
       id: 1,
-      name: "Order",
+      name: "Current Order",
       link: "/Current_order",
     },
     {
