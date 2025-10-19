@@ -12,7 +12,7 @@ const PaymentSuccess = () => {
   const dispatch = useDispatch()
 
   const handleGoHome = () => {
-    window.location.href = "http://localhost:5173/shop";
+    window.location.href = "https://fresho-veggies.netlify.app/shop";
   };
 
   return (

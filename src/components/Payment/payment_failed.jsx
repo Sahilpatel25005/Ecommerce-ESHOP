@@ -2,7 +2,7 @@ import React from "react";
 
 const PaymentFailed = () => {
   const handleRetry = () => {
-    window.location.href = "http://localhost:5173/cheakout";
+    window.location.href = "https://fresho-veggies.netlify.app/cheakout";
   };
 
   return (

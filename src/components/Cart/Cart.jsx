@@ -16,7 +16,7 @@ import useApiCall from "../../APIcall/Hook";
 
 
 function Cart() {
-  const image_url = import.meta.env.VITE_IMAGE_URL;
+    const image_url = import.meta.env.VITE_IMAGE_URL;
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ function Cart() {
                   >
                     <div className="flex items-center gap-4">
                       <img
-                        src={`${image_url}/public/products/${item.image}`}
+                        src={`${image_url}/products/${item.image}}`}
                         alt=""
                         className="w-[50px] h-[50px] object-cover"
                       />
