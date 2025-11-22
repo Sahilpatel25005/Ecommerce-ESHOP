@@ -48,26 +48,38 @@ const AdminAddProduct = () => {
     setErrors({});
 
     try {
-      // Send image to generate-product API
       const formData = new FormData();
       formData.append("image", selectedFile);
 
-      const response = await apiCall("/generate-product", "POST", formData, true);
+      const response = await apiCall(
+        "/generate-product",
+        "POST",
+        formData,
+        true
+      );
 
-      // Fill fields if API returns data
-      if (response.product_data?.title || response.product_data?.description) {
+      // --- CATEGORY IS MANDATORY ---
+      if (!response.categories || response.categories.length === 0) {
+        throw new Error("Category data missing from API");
+      }
+
+      // Set categories (MANDATORY)
+      setCategories(response.categories);
+
+      // --- PRODUCT DATA OPTIONAL ---
+      if (response.product_data?.product_title || response.product_data?.product_description) {
         setProduct((prev) => ({
           ...prev,
-          name: response.product_data.title || prev.name,
-          description: response.product_data.description || prev.description,
+          name: response.product_data.product_title || prev.name,
+          description: response.product_data.product_description || prev.description,
           category: response.product_data.category || prev.category,
         }));
-
-        if (response.categories) setCategories(response.categories);
       }
     } catch (error) {
       console.error("Error generating product details:", error);
-      setErrors({ apiError: "Failed to generate product details" });
+      setErrors({
+        apiError: error.message || "Failed to generate product details",
+      });
     } finally {
       setLoading(false);
     }
@@ -77,7 +89,8 @@ const AdminAddProduct = () => {
   const validate = () => {
     const errs = {};
     if (!product.name) errs.name = "Title is required";
-    if (!product.price || product.price <= 0) errs.price = "Price must be greater than zero";
+    if (!product.price || product.price <= 0)
+      errs.price = "Price must be greater than zero";
     if (!file) errs.image = "Product image is required";
     if (!product.description) errs.description = "Description is required";
     if (!product.category) errs.category = "Category is required";
@@ -100,7 +113,12 @@ const AdminAddProduct = () => {
       formData.append("category", product.category);
       formData.append("image", file);
 
-      const response = await apiCall("/admin_add_product", "POST", formData, true);
+      const response = await apiCall(
+        "/admin_add_product",
+        "POST",
+        formData,
+        true
+      );
       if (!response.message) throw new Error(JSON.stringify(response));
 
       alert("✅ Product added successfully!");
@@ -163,7 +181,9 @@ const AdminAddProduct = () => {
               className="mt-2 w-32 h-32 object-cover border rounded"
             />
           )}
-          {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
+          {errors.image && (
+            <p className="text-red-500 text-sm">{errors.image}</p>
+          )}
         </div>
 
         {/* Title */}
@@ -192,7 +212,9 @@ const AdminAddProduct = () => {
             className="w-full p-2 border rounded"
             disabled={loading}
           />
-          {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+          {errors.description && (
+            <p className="text-red-500 text-sm">{errors.description}</p>
+          )}
         </div>
 
         {/* Price */}
@@ -207,7 +229,9 @@ const AdminAddProduct = () => {
             className="w-full p-2 border rounded"
             disabled={loading}
           />
-          {errors.price && <p className="text-red-500 text-sm">{errors.price}</p>}
+          {errors.price && (
+            <p className="text-red-500 text-sm">{errors.price}</p>
+          )}
         </div>
 
         {/* Category */}
@@ -227,11 +251,15 @@ const AdminAddProduct = () => {
               </option>
             ))}
           </select>
-          {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+          {errors.category && (
+            <p className="text-red-500 text-sm">{errors.category}</p>
+          )}
         </div>
 
         {/* API Error */}
-        {errors.apiError && <p className="text-red-500 text-sm">{errors.apiError}</p>}
+        {errors.apiError && (
+          <p className="text-red-500 text-sm">{errors.apiError}</p>
+        )}
 
         <button
           type="submit"
