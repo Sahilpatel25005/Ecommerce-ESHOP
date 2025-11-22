@@ -84,7 +84,7 @@ const ViewProducts = () => {
               className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-transform transform hover:-translate-y-1"
             >
               <img
-                src={`${image_url}/public/products/${product.image}`}
+                src={`${image_url}/products/${product.image}`}
                 alt={product.name}
                 className="w-full h-48 object-cover"
               />
