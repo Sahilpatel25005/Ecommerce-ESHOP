@@ -155,7 +155,7 @@ const Login = () => {
               </Link>
             </p>
             <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
+              Login for Admin{" "}
               <Link
                 to="/admin"
                 className="text-sm text-blue-900 hover:text-primary"
