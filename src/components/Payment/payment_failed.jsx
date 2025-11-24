@@ -1,8 +1,9 @@
 import React from "react";
 
 const PaymentFailed = () => {
+  const URL = import.meta.env.VITE_FRONT_URL;
   const handleRetry = () => {
-    window.location.href = "https://fresho-veggies.netlify.app/cheakout";
+    window.location.href = `${URL}/cheakout`;
   };
 
   return (
@@ -12,8 +13,8 @@ const PaymentFailed = () => {
           Payment Failed!
         </h1>
         <p className="text-gray-600 mb-8">
-          Oops! Something went wrong with your payment.  
-          Please try again or check your payment details.
+          Oops! Something went wrong with your payment. Please try again or
+          check your payment details.
         </p>
 
         <button

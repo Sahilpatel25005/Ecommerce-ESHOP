@@ -8,7 +8,7 @@ const ViewProducts = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const image_url = import.meta.env.VITE_IMAGE_URL;
+  const image_url = import.meta.env.VITE_FRONT_URL;
 
   // ✅ Fetch products from API
   const fetchProducts = async () => {
@@ -25,10 +25,14 @@ const ViewProducts = () => {
 
   // ✅ Delete product
   const handleDelete = async (productid) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    if (!window.confirm("Are you sure you want to delete this product?"))
+      return;
 
     try {
-      const response = await apiCall(`/admin/delete_product/${productid}`, "DELETE");
+      const response = await apiCall(
+        `/admin/delete_product/${productid}`,
+        "DELETE"
+      );
       if (response.message) {
         alert("🗑️ Product deleted successfully!");
         setProducts((prev) => prev.filter((p) => p.productid !== productid));
@@ -75,7 +79,9 @@ const ViewProducts = () => {
       </div>
 
       {products.length === 0 ? (
-        <p className="text-center text-gray-600 text-lg">No products available</p>
+        <p className="text-center text-gray-600 text-lg">
+          No products available
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {products.map((product) => (

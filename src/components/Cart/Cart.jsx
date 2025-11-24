@@ -14,9 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import useApiCall from "../../APIcall/Hook";
 
-
 function Cart() {
-    const image_url = import.meta.env.VITE_IMAGE_URL;
+  const image_url = import.meta.env.VITE_FRONT_URL;
   const isCartOpen = useSelector((state) => state.handlecart.isopen);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,11 +37,6 @@ function Cart() {
     );
   }, [items]);
 
-
-  
-
-
-
   return (
     <>
       <div
@@ -54,7 +48,10 @@ function Cart() {
           className=" w-full cursor-default  flex justify-end"
           // onClick={}
         >
-          <ImCross className="bg-gray-200 p-2 rounded-full  text-3xl text-black cursor-pointer" onClick={() => dispatch(setIsopen())} />
+          <ImCross
+            className="bg-gray-200 p-2 rounded-full  text-3xl text-black cursor-pointer"
+            onClick={() => dispatch(setIsopen())}
+          />
         </button>
 
         <div className="mt-4">
@@ -145,7 +142,6 @@ function Cart() {
             onClick={() => {
               navigate("cheakout");
               dispatch(setIsopen());
-              
             }}
           >
             Cheak Out

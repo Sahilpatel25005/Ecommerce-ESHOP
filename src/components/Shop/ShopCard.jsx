@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa6";
 const ShopCard = ({ data }) => {
   const selectcategory = useSelector((state) => state.category.categorytype);
   const searchResults = useSelector((state) => state.search.search);
-  const image_url = import.meta.env.VITE_IMAGE_URL;
+  const image_url = import.meta.env.VITE_FRONT_URL;
   const [rating, setRatings] = useState({});
 
   const handleRating = (productId, ratingValue) => {
@@ -17,7 +17,6 @@ const ShopCard = ({ data }) => {
     }));
   };
 
-
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -26,19 +25,19 @@ const ShopCard = ({ data }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center ">
           {data
             .filter((item) => {
-            
               // Check if productid matches search results (if search results exist)
-                const matchesSearch = !searchResults || 
-                  searchResults.length === 0 || 
-                  searchResults.includes(item.productid);
-                  console.log(item.productid)
-                
-                // Check category filter
-                const matchesCategory = selectcategory === "All" || 
-                  selectcategory === item.categoryname;
-                
-                return matchesSearch && matchesCategory;
-              
+              const matchesSearch =
+                !searchResults ||
+                searchResults.length === 0 ||
+                searchResults.includes(item.productid);
+              console.log(item.productid);
+
+              // Check category filter
+              const matchesCategory =
+                selectcategory === "All" ||
+                selectcategory === item.categoryname;
+
+              return matchesSearch && matchesCategory;
             })
             .map((data) => (
               <div

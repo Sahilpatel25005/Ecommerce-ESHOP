@@ -2,8 +2,7 @@ import React from "react";
 import Button from "../Shered/Button";
 
 const ProductCard = ({ data }) => {
-  const image_url = import.meta.env.VITE_IMAGE_URL;
-
+  const image_url = import.meta.env.VITE_FRONT_URL;
 
   return (
     <div className="mb-10 ">
