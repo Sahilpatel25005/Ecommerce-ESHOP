@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const ProductPage = () => {
   const navigate = useNavigate();
 
@@ -11,6 +10,10 @@ const ProductPage = () => {
 
   const handleViewProducts = () => {
     window.location.href = "/view-products";
+  };
+
+  const handleViewOrders = () => {
+    window.location.href = "/admin-order";
   };
 
   const handleLogout = () => {
@@ -38,6 +41,14 @@ const ProductPage = () => {
             className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
           >
             📦 View All Products
+          </button>
+
+          {/* NEW BUTTON FOR VIEWING ORDERS */}
+          <button
+            onClick={handleViewOrders}
+            className="bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-2xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
+          >
+            🛒 View Orders
           </button>
 
           <button

@@ -99,7 +99,7 @@ function Navbar({ handleMenuOpen }) {
           </div>
           <div className="flex justify-between items-center gap-4">
             {/* Searchbar section */}
-            <div className="relative group hidden sm:block">
+            {/* <div className="relative group hidden sm:block">
               <input
                 type="text"
                 value={search}
@@ -119,7 +119,7 @@ function Navbar({ handleMenuOpen }) {
                   group-hover:text-primary duration-200"
                 />
               )}
-            </div>
+            </div> */}
             <div className="flex relative">
               <FaShoppingCart
                 className="text-xl cursor-pointer"

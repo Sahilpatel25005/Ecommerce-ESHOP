@@ -28,6 +28,7 @@ import PaymentFailed from "./components/Payment/payment_failed.jsx";
 import PaymentSuccess from "./components/Payment/payment_success.jsx";
 import ProductPage from "./components/Admin/ProductManagement.jsx";
 import ViewProducts from "./components/Admin/ViewProduct.jsx";
+import AdminOrders from "./components/Admin/ViewOrder.jsx";
 
 
 const routes = createBrowserRouter(
@@ -41,6 +42,7 @@ const routes = createBrowserRouter(
       <Route path="/productmanagement" element={<ProductPage />} />
       <Route path="/adminaddproduct" element={<AdminAddProduct />} />
       <Route path="/view-products" element={<ViewProducts />} />
+      <Route path="/admin-order" element={<AdminOrders />} />
       <Route element={<PrivateRoute />}>
         <Route path="/Home" element={<App />} />
         <Route path="shop" element={<Shop />} />
