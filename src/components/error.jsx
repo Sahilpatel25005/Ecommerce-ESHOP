@@ -9,7 +9,6 @@ const YourComponent = () => {
       // Example API endpoint and request method
       await apiCall("/some-endpoint", "GET", null, setError);
     } catch (err) {
-      console.log("API call failed:", err);
       // Error is already set in state by apiCall
     }
   };

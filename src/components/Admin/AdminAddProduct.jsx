@@ -17,20 +17,7 @@ const AdminAddProduct = () => {
 
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
-
-  // Fetch categories on mount (if needed)
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await apiCall("/admin/get_categories", "GET");
-        if (res.categories) setCategories(res.categories);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchCategories();
-  }, []);
-
+  
   // Handle text input changes
   const handleChange = (e) => {
     const { name, value } = e.target;

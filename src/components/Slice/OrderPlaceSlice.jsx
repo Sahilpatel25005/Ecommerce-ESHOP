@@ -29,7 +29,6 @@ export const orderPlacedSlice = createSlice({
       builder.addCase(order_placed.fulfilled, (state, action) => {
         state.loading = false;
         state.placeOrder = action.payload;
-        console.log("Order placed payload:", action.payload);
       }),
       builder.addCase(order_placed.rejected, (state, action) => {
         state.loading = true;

@@ -30,7 +30,6 @@ const ShopCard = ({ data }) => {
                 !searchResults ||
                 searchResults.length === 0 ||
                 searchResults.includes(item.productid);
-              console.log(item.productid);
 
               // Check category filter
               const matchesCategory =
@@ -47,11 +46,13 @@ const ShopCard = ({ data }) => {
                 className="group  w-full p-5 rounded-md shadow-lg duration-200 dark:shadow-gray-800"
               >
                 <div className="relative mb-8 flex justify-center items-center bg-gray-200">
-                  <img
-                    src={`${image_url}/products/${data.image}`}
-                    alt=""
-                    className="h-[290px] w-[290px] object-cover rounded-md "
-                  />
+                  <div className="w-full aspect-square overflow-hidden rounded-t-xl">
+                    <img
+                      src={`${image_url}/products/${data.image}`}
+                      alt={data.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
                   <div className="hidden group-hover:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full text-center group-hover:backdrop-blur-sm justify-center items-center duration-400 rounded-md">
                     <Button

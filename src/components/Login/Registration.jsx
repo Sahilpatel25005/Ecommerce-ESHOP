@@ -150,10 +150,11 @@ const Registration = () => {
             </label>
             <input
               type="number"
-              id="phoneNumber"
-              maxLength={10}
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onInput={(e) => {
+                e.target.value = e.target.value.slice(0, 10);
+                setPhoneNumber(e.target.value);
+              }}
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md"
             />
             {errors.phoneNumber && (

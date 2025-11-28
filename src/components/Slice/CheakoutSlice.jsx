@@ -4,7 +4,7 @@ import apiCall from "../../APIcall/APIcall";
 export const CheakoutDetails = createAsyncThunk("CheakoutDetails", async () => {
   try {
     const res = await apiCall("/user_details");
-    return res.user_detail;
+    return res;
   } catch (error) {
     throw error.message;
   }

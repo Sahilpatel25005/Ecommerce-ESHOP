@@ -31,7 +31,6 @@ const GenerateProductDetailsSlice = createSlice({
         state.loading = false;
       })
       .addCase(generate_product_details.rejected, (state, action) => {
-        console.log("item is not in store that you have to search");
         state.product_details.push(action.payload);
         // console.log("item is not in store that you have to search", state.search);
       });

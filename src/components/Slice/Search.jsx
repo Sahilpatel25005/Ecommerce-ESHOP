@@ -31,7 +31,6 @@ const Searchslice = createSlice({
         state.loading = false;
       })
       .addCase(searchItem.rejected, (state, action) => {
-        console.log("item is not in store that you have to search");
         state.search.push(action.payload);
         // console.log("item is not in store that you have to search", state.search);
       });

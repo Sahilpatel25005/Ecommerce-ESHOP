@@ -108,7 +108,6 @@ function Cart() {
                       <button
                         className="bg-red-600 text-white px-2 py-2 rounded-md"
                         onClick={() => {
-                          console.log("Deleting product:", item.productid);
                           dispatch(removeProduct(item.productid));
                         }}
                       >
