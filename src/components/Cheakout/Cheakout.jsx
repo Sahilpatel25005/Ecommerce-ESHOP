@@ -22,14 +22,14 @@ function Checkout() {
 
   // Derived values
   const totalAmount = Number(details.total_amount || 0);
-  const payableAmount = Math.max(0, totalAmount - Number(discount || 0));
+  const payableAmount = Math.max(0, (totalAmount - Number(discount || 0)));
 
   const user = {
     "First Name": details?.user_detail?.FirstName,
     "Last Name": details?.user_detail?.LastName,
-    Email: details?.user_detail?.Email,
+    "Email": details?.user_detail?.Email,
     "Mobile Number": details?.user_detail?.MobileNnumber,
-    Address: details?.user_detail?.Address,
+    "Address": details?.user_detail?.Address,
   };
 
   // Apply Promo Code (Backend Validation + client-side rules)
@@ -51,22 +51,21 @@ function Checkout() {
 
     setLoading(true);
     try {
-      const res = await fetch(
-        `${baseUrl}/promocodes/${encodeURIComponent(code)}`,
-        {
-          method: "GET",
-          credentials: "include", // ⭐ important: send cookies
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const token = localStorage.getItem("token");
+      // Call backend endpoint that returns promocode details by name
+      const res = await fetch(`${baseUrl}/promocodes/${encodeURIComponent(code)}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
+      });
+
       const data = await res.json();
 
       if (!res.ok) {
         // show server message if present
-        const detail =
-          data?.detail || data?.message || "Promo validation failed";
+        const detail = data?.detail || data?.message || "Promo validation failed";
         setPromoError(detail);
         setPromoApplied(false);
         setDiscount(0);
@@ -85,9 +84,7 @@ function Checkout() {
 
       // Rule 1: promo value cannot be >= total amount
       if (promoValue >= totalAmount) {
-        setPromoError(
-          "Promo value cannot be equal to or greater than the total amount."
-        );
+        setPromoError("Promo value cannot be equal to or greater than the total amount.");
         setPromoApplied(false);
         setDiscount(0);
         return;
@@ -96,9 +93,7 @@ function Checkout() {
       // Rule 2: after applying promo, payable must be >= 50
       const newPayable = totalAmount - promoValue;
       if (newPayable < 50) {
-        setPromoError(
-          "Cannot apply promo — payable amount would fall below ₹50."
-        );
+        setPromoError("Cannot apply promo — payable amount would fall below ₹50.");
         setPromoApplied(false);
         setDiscount(0);
         return;
@@ -135,34 +130,25 @@ function Checkout() {
     const finalPayable = payableAmount;
 
     if (finalPayable < 50) {
-      alert(
-        "We do not process payments under ₹50. Adjust your order or promo code."
-      );
+      alert("We do not process payments under ₹50. Adjust your order or promo code.");
       return;
     }
 
     setLoading(true);
     try {
+      const token = localStorage.getItem("token");
       // Send promo code and let backend re-validate as well (important)
-      const res = await fetch(
-        `${baseUrl}/stripe_payment/create-checkout-session`,
-        {
-          method: "POST",
-          credentials: "include", // ⭐ send cookie automatically
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            promocode: promoApplied ? promocode : "none",
-          }),
-        }
-      );
+      const res = await fetch(`${baseUrl}/stripe_payment/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
+        body: JSON.stringify({ promocode: promoApplied ? promocode : 'none' }),
+      });
 
       const data = await res.json();
-      if (!res.ok)
-        throw new Error(
-          data.detail || data.message || "Failed to create payment session"
-        );
+      if (!res.ok) throw new Error(data.detail || data.message || "Failed to create payment session");
 
       // Redirect to stripe checkout url returned by backend
       window.location.href = data.url;
@@ -184,16 +170,9 @@ function Checkout() {
         {/* User Details */}
         <div className="space-y-4">
           {Object.entries(user).map(([key, val]) => (
-            <div
-              key={key}
-              className="flex justify-between border-b border-gray-300 pb-2"
-            >
-              <span className="capitalize text-gray-600 dark:text-gray-400">
-                {key}:
-              </span>
-              <span className="text-gray-800 dark:text-white">
-                {val || "-"}
-              </span>
+            <div key={key} className="flex justify-between border-b border-gray-300 pb-2">
+              <span className="capitalize text-gray-600 dark:text-gray-400">{key}:</span>
+              <span className="text-gray-800 dark:text-white">{val || "-"}</span>
             </div>
           ))}
         </div>
@@ -207,24 +186,18 @@ function Checkout() {
 
           <div className="flex justify-between">
             <span className="text-gray-600">Discount:</span>
-            <span className="font-semibold text-green-600">
-              - ₹{Number(discount || 0).toFixed(2)}
-            </span>
+            <span className="font-semibold text-green-600">- ₹{Number(discount || 0).toFixed(2)}</span>
           </div>
 
           <div className="flex justify-between">
             <span className="text-gray-700">Payable:</span>
-            <span className="text-xl font-bold">
-              ₹{payableAmount.toFixed(2)}
-            </span>
+            <span className="text-xl font-bold">₹{payableAmount.toFixed(2)}</span>
           </div>
         </div>
 
         {/* Promo Code Section */}
         <div className="mt-8">
-          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-            Promo Code
-          </label>
+          <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">Promo Code</label>
           <div className="flex gap-3">
             <input
               type="text"
@@ -242,23 +215,15 @@ function Checkout() {
               onClick={handleApplyPromo}
               disabled={loading}
               className={`px-6 py-2 rounded-lg font-semibold text-white transition ${
-                promoApplied
-                  ? "bg-green-500 hover:bg-green-600"
-                  : "bg-gradient-to-r from-green-500 to-lime-600 hover:opacity-90"
+                promoApplied ? "bg-green-500 hover:bg-green-600" : "bg-gradient-to-r from-green-500 to-lime-600 hover:opacity-90"
               }`}
             >
               {loading ? "Checking..." : promoApplied ? "Applied ✓" : "Apply"}
             </button>
           </div>
 
-          {promoError && (
-            <p className="text-red-500 mt-2 text-sm">{promoError}</p>
-          )}
-          {promoApplied && (
-            <p className="text-green-500 mt-2 text-sm">
-              Promo applied! Discount: ₹{discount}
-            </p>
-          )}
+          {promoError && <p className="text-red-500 mt-2 text-sm">{promoError}</p>}
+          {promoApplied && <p className="text-green-500 mt-2 text-sm">Promo applied! Discount: ₹{discount}</p>}
         </div>
 
         {/* Payment Button */}
@@ -266,13 +231,9 @@ function Checkout() {
           <button
             onClick={handlePayment}
             disabled={loading}
-            className={`bg-gradient-to-r from-green-500 to-lime-600 text-white py-3 px-8 rounded-full shadow-lg transition ${
-              loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
-            }`}
+            className={`bg-gradient-to-r from-green-500 to-lime-600 text-white py-3 px-8 rounded-full shadow-lg transition ${loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"}`}
           >
-            {loading
-              ? "Processing..."
-              : `Pay ₹${payableAmount.toFixed(2)} with Stripe`}
+            {loading ? "Processing..." : `Pay ₹${payableAmount.toFixed(2)} with Stripe`}
           </button>
         </div>
       </div>
