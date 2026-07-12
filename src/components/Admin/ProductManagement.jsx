@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 const ProductPage = () => {
-  const navigate = useNavigate();
-
   const handleAddProduct = () => {
     window.location.href = "/adminaddproduct";
   };
@@ -12,14 +10,18 @@ const ProductPage = () => {
     window.location.href = "/view-products";
   };
 
-  const handleViewOrders = () => {
-    window.location.href = "/admin-order";
-  };
+const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+const handleLogout = async () => {
+  try {
+    await apiCall("/login/logout", "POST"); // backend clears cookie
+    navigate("/login"); // redirect user
+  } catch (err) {
+    console.error("Logout error:", err);
+    navigate("/login"); // still redirect even if error occurs
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-green-200">
@@ -41,14 +43,6 @@ const ProductPage = () => {
             className="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
           >
             📦 View All Products
-          </button>
-
-          {/* NEW BUTTON FOR VIEWING ORDERS */}
-          <button
-            onClick={handleViewOrders}
-            className="bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-2xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
-          >
-            🛒 View Orders
           </button>
 
           <button

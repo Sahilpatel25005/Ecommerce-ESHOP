@@ -39,23 +39,24 @@ const Login = () => {
     };
 
     try {
-      const res = await apiCall("/admin", "post", data);
+      const res = await apiCall("/admin", "POST", data);
+
       if (res.error) {
         setLoginError(res.error);
       } else {
-        localStorage.setItem("token", res.access_token);
+        // Cookie is already set automatically by backend
         navigate("/productmanagement");
       }
     } catch (error) {
-      if (error.message === "Token expired") {
+      // Handle session/token errors
+      if (error.message?.toLowerCase().includes("expired")) {
         setLoginError("Your session has expired. Please log in again.");
-        localStorage.removeItem("token");
         navigate("/login");
       } else {
         setLoginError("An error occurred. Please try again later.");
       }
     } finally {
-      setLoading(false); // Stop loader after request
+      setLoading(false);
     }
   };
 

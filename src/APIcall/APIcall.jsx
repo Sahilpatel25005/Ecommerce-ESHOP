@@ -1,12 +1,25 @@
+const getCookieToken = () => {
+  if (typeof document === "undefined") return null;
+
+  const accessTokenCookie = document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith("access_token="));
+
+  return accessTokenCookie
+    ? decodeURIComponent(accessTokenCookie.slice("access_token=".length)).replace(/^"|"$/g, "")
+    : null;
+};
+
 const apiCall = async (endpoint, method = "GET", body = null, isFormData = false) => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
   try {
-    const token = localStorage.getItem("token");
-
+    const token = getCookieToken();
     const options = {
       method,
       headers: {},
+      credentials: "include",
     };
 
     // Only add JSON Content-Type if NOT sending FormData
@@ -19,7 +32,9 @@ const apiCall = async (endpoint, method = "GET", body = null, isFormData = false
     }
 
     if (token) {
-      options.headers["Authorization"] = `Bearer ${token}`;
+      options.headers["Authorization"] = token.startsWith("Bearer ")
+        ? token
+        : `Bearer ${token}`;
     }
 
     const response = await fetch(`${baseUrl}${endpoint}`, options);

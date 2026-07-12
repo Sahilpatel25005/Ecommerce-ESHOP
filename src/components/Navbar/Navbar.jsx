@@ -26,15 +26,17 @@ function Navbar({ handleMenuOpen }) {
     dispatch(setIsopen());
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      await apiCall("/login/logout", "POST"); // backend clears cookie
+      navigate("/login"); // redirect user
+    } catch (err) {
+      console.error("Logout error:", err);
+      navigate("/login"); // still redirect even if error occurs
+    }
   };
 
-  const[search, setSearch] = React.useState("");
-
-  
+  const [search, setSearch] = React.useState("");
 
   return (
     <div className="bg-white dark:bg-gray-900 dark:text-white relative duration-200 shadow-lg z-30 ">
@@ -146,7 +148,6 @@ function Navbar({ handleMenuOpen }) {
               group-hover:text-primary duration-200"
               >
                 <FaSignOutAlt className="text-xl" />
-                
               </button>
             </div>
           </div>

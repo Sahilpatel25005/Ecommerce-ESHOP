@@ -3,6 +3,27 @@ import { useSelector } from "react-redux";
 import { CheakoutDetails } from "../Slice/CheakoutSlice";
 import useApiCall from "../../APIcall/Hook";
 
+const getCookieToken = () => {
+  const accessTokenCookie = document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim())
+    .find((cookie) => cookie.startsWith("access_token="));
+
+  return accessTokenCookie
+    ? decodeURIComponent(accessTokenCookie.slice("access_token=".length)).replace(/^"|"$/g, "")
+    : null;
+};
+
+const getAuthHeaders = () => {
+  const token = getCookieToken();
+
+  return token
+    ? {
+        Authorization: token.startsWith("Bearer ") ? token : `Bearer ${token}`,
+      }
+    : {};
+};
+
 function Checkout() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -51,13 +72,13 @@ function Checkout() {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
       // Call backend endpoint that returns promocode details by name
       const res = await fetch(`${baseUrl}/promocodes/${encodeURIComponent(code)}`, {
         method: "GET",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token ? `Bearer ${token}` : undefined,
+          ...getAuthHeaders(),
         },
       });
 
@@ -136,13 +157,13 @@ function Checkout() {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
       // Send promo code and let backend re-validate as well (important)
       const res = await fetch(`${baseUrl}/stripe_payment/create-checkout-session`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token ? `Bearer ${token}` : undefined,
+          ...getAuthHeaders(),
         },
         body: JSON.stringify({ promocode: promoApplied ? promocode : 'none' }),
       });
