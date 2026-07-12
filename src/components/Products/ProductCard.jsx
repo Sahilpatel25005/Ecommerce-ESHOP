@@ -1,51 +1,66 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Button from "../Shered/Button";
 
 const ProductCard = ({ data }) => {
   const image_url = import.meta.env.VITE_FRONT_URL;
 
   return (
-    <div
-      className="grid grid-flow-row auto-rows-max justify-center gap-5 place-items-center
-             grid-cols-[repeat(auto-fit,minmax(250px,1fr))]"
-    >
-      {data.map((data) => (
-        <div
-          data-aos="fade-up"
-          data-aos-delay={data.asoDelay}
-          key={data.id}
-          className="group w-[250px]" // ⭐ fixed product width (doesn't change)
+    <div className="grid grid-flow-row auto-rows-max justify-center gap-5 place-items-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
+      {data.map((item, i) => (
+        <motion.div
+          key={item.productid || item.id}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ y: -8 }}
+          className="group w-[250px]"
         >
           <div className="relative mb-8">
-            <div className="w-full aspect-square overflow-hidden rounded-t-xl">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+              className="w-full aspect-square overflow-hidden rounded-t-xl"
+            >
               <img
-                src={`${image_url}/products/${data.image}`}
-                alt={data.name}
+                src={`${image_url}/products/${item.image}`}
+                alt={item.name}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
 
-            <div className="hidden group-hover:flex absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-full w-full text-center group-hover:backdrop-blur-sm justify-center items-center duration-200 rounded-md">
-              <Button
-                text={"Add to Cart"}
-                bgColor={"bg-primary"}
-                textColor={"text-white"}
-                productData={{
-                  productid: data.productid,
-                  name: data.name,
-                  price: data.price,
-                  image: data.image,
-                  qty: 1,
-                }}
-              />
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1, backdropFilter: "blur(4px)" }}
+              className="absolute inset-0 flex items-center justify-center duration-200"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Button
+                  text={"Add to Cart"}
+                  bgColor={"bg-primary"}
+                  textColor={"text-white"}
+                  productData={{
+                    productid: item.productid,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image,
+                    qty: 1,
+                  }}
+                />
+              </motion.div>
+            </motion.div>
           </div>
 
           <div className="leading-7 text-center">
-            <h2 className="font-semibold">{data.name}</h2>
-            <h2 className="font-bold">₹{data.price}</h2>
+            <h2 className="font-semibold dark:text-white">{item.name}</h2>
+            <h2 className="font-bold dark:text-white">₹{item.price}</h2>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );

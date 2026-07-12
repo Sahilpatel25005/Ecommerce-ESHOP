@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import LightButton from "../../assets/DL/light-mode-button.png";
 import DarkButton from "../../assets/DL/dark-mode-button.png";
 
 function DarkMode() {
-  const [isdark, setIsdark] = useState("false");
-  const [dark, setDark] = useState(LightButton);
+  const [isdark, setIsdark] = useState(false);
 
-  const darkModeOn = () => {
-    const element = document.documentElement;
+  useEffect(() => {
     if (isdark) {
-      element.classList.add("dark");
+      document.documentElement.classList.add("dark");
     } else {
-      element.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
-  };
+  }, [isdark]);
 
-  const toggel = () => {
-    if (isdark == false) {
-      setDark(LightButton);
-    } else {
-      setDark(DarkButton);
-    }
-    setIsdark(!isdark);
-    darkModeOn();
-  };
+  const toggle = () => setIsdark((prev) => !prev);
 
   return (
-    <div className="">
-      <img
-        src={dark}
-        alt="light"
+    <motion.div
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="cursor-pointer"
+    >
+      <motion.img
+        key={isdark ? "dark" : "light"}
+        initial={{ rotate: -90, opacity: 0 }}
+        animate={{ rotate: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        src={isdark ? DarkButton : LightButton}
+        alt="toggle theme"
         className="w-12 transition-all duration-300 p-0 mt-1"
-        onClick={toggel}
+        onClick={toggle}
       />
-    </div>
+    </motion.div>
   );
 }
 
